@@ -3,11 +3,16 @@ import { Card, Icon, Button } from 'semantic-ui-react';
 
 export default class AssistanceRequestCard extends Component {
     render() {
-        const header = 'header';
-        const description = 'asdasddasda';
+        const { assistanceRequest } = this.props;
+
+        console.log(assistanceRequest);
+
+        const { id, payload } = assistanceRequest;
+        const { summary, description } = payload;
+
         return (
             <Card>
-                <Card.Content header={header} />
+                <Card.Content header={summary} />
                 <Card.Content>
                     <p>{description}</p>
                     <span className="date">5 minutes ago</span>

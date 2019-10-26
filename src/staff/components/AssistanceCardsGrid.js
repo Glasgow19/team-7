@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Card, Dropdown, Form } from 'semantic-ui-react';
 import AssistanceRequestCard from './AssistanceRequestCard';
+import { getAssistanceRequests } from '../ApiService';
 
 const assistanceOptions = [
     { key: 'all', text: 'all', value: 'all' },
@@ -9,7 +10,24 @@ const assistanceOptions = [
 ];
 
 export default class AssistanceCardsGrid extends Component {
+    componentDidMount() {
+        getAssistanceRequests().then(assistanceRequests => {
+            this.setState({ assistanceRequests });
+            console.log(assistanceRequests);
+        });
+    }
     render() {
+        const state = this.state;
+
+        const assistanceRequests =
+            this.state && this.state.assistanceRequests ? (
+                this.state.assistanceRequests.map((assistanceRequest, index) => (
+                    <AssistanceRequestCard assistanceRequest={assistanceRequest} key={index} />
+                ))
+            ) : (
+                <div>No assistance requests :) </div>
+            );
+
         return (
             <div>
                 <Form>
@@ -24,17 +42,7 @@ export default class AssistanceCardsGrid extends Component {
                         placeholder="Filter by assistance type"
                     />
                 </Form>
-                <Card.Group>
-                    <AssistanceRequestCard />
-                    <AssistanceRequestCard />
-                    <AssistanceRequestCard />
-                    <AssistanceRequestCard />
-                    <AssistanceRequestCard />
-                    <AssistanceRequestCard />
-                    <AssistanceRequestCard />
-                    <AssistanceRequestCard />
-                    <AssistanceRequestCard />
-                </Card.Group>
+                <Card.Group>{assistanceRequests}</Card.Group>
             </div>
         );
     }
