@@ -11,9 +11,19 @@ const assistanceOptions = [
 
 export default class AssistanceCardsGrid extends Component {
     componentDidMount() {
-        getAssistanceRequests().then(assistanceRequests => {
-            this.setState({ assistanceRequests });
-            console.log(assistanceRequests);
+        const easyGridReload = () => {
+            getAssistanceRequests().then(assistanceRequests => {
+                this.setState({ assistanceRequests });
+                console.log(assistanceRequests);
+            });
+        };
+
+        easyGridReload();
+
+        window.socket.on('staff:newAssistanceRequest', payload => {
+            console.log('new help needed', payload);
+            easyGridReload();
+            alert('hi');
         });
     }
     render() {

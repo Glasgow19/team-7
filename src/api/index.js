@@ -34,9 +34,10 @@ io.on('connection', clientSocket => {
     clientSocket.emit('connected', { hello: 'hello boi' });
     console.log('connected: it works.');
 
-    clientSocket.on('help', payload => {
+    clientSocket.on('newAssistanceRequest', payload => {
         console.log(payload);
         clientSocket.emit('helpReceived', { message: 'received help' });
+        clientSocket.broadcast.emit('staff:newAssistanceRequest', payload);
     });
 });
 
