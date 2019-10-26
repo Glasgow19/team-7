@@ -6,6 +6,8 @@ import UserActions from '../actions/user';
 import { loggedIn, getLoggedInUser, getToken } from '../AuthService';
 import pollos from '../pollos.jpg';
 
+import SpeechRecognizer from './SpeechRecognizer';
+
 class Home extends Component {
     constructor(props) {
         super(props);
@@ -36,6 +38,7 @@ class Home extends Component {
                         pronounced [los ˈpo.ʝos eɾˈma.nos], is ungrammatical Spanish for "The
                         Chicken Brothers."
                     </p>
+                    <SpeechRecognizer />
                     <Button
                         content="Send it"
                         onClick={(event, args) => {
