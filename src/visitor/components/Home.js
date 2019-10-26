@@ -6,6 +6,8 @@ import { Header, Container, Image, Segment, Button } from 'semantic-ui-react';
 import FormActions from '../actions/form';
 import { loggedIn, getLoggedInUser, getToken } from '../AuthService';
 import pollos from '../pollos.jpg';
+import { createAssistanceRequest } from '../ApiService';
+import SpeechRecognizer from './SpeechRecognizer';
 
 const HEALTH_AID = 'HEALTH';
 const NAVIGATION_AID = 'NAVIGATION';
@@ -23,16 +25,23 @@ class Home extends Component {
     }
 
     render() {
-        const { user } = this.state;
-        const { updateUser } = this.props;
-
         return (
             <Container>
                 <Segment textAlign="center">
-                    <p>Do you want a navigation aid or to request a exhibit guide?</p>
+                    <Button
+                        icon="list"
+                        fluid
+                        content="Do you want a navigation aid or to request a exhibit guide?"
+                        onClick={() => {
+                            this.nextPath('/navhelp1');
+                            this.props.setAidType(NAVIGATION_AID);
+                        }}
+                    />
                     <Button
                         fluid
-                        content="Yes"
+                        icon="heart"
+                        color="red"
+                        content="Do you want a health assistance?"
                         onClick={() => {
                             this.nextPath('/navhelp1');
                             this.props.setAidType(NAVIGATION_AID);
