@@ -3,9 +3,7 @@ import { Header, Container, Segment } from 'semantic-ui-react';
 import '/./feedback.css';
 import logo from '/./gsc_logo.svg';
 import {Pie} from 'react-chartjs-2'
-import { List, Image } from 'semantic-ui-react'
-
-
+import { List, Rating } from 'semantic-ui-react'
 
 const data = {
 	labels: [
@@ -47,25 +45,46 @@ const Page3 = () => (
           <Pie data={data} />
         </div>
         <List>
-    <List.Item>
-    <Image avatar src='' />
-      <List.Content>
-        <List.Header as='a'>Rachel</List.Header>
-        <List.Description>
-            Loved it
-        </List.Description>
-      </List.Content>
-    </List.Item>
-    <List.Item>
-    <Image avatar src='' />
-      <List.Content>
-        <List.Header as='a'>Archie</List.Header>
-        <List.Description>
-            meeeh
-        </List.Description>
-      </List.Content>
-    </List.Item>
-  </List>
+            <List.Item>
+            <Rating icon='star' defaultRating={5} maxRating={5} disabled/>
+                <List.Content>
+                    <List.Header as='a'>Rachel</List.Header>
+                    <List.Description>
+                        15:12pm 12/10/2019
+                    </List.Description>
+                    <List.Description>
+                        Loved it
+                    </List.Description>
+                </List.Content>
+            </List.Item>
+                <List.Item>
+                <Rating icon='star' defaultRating={1} maxRating={5} disabled/>
+                <List.Content>
+                    <List.Header as='a'>Archie</List.Header>
+                    <List.Description>
+                        meeeh
+                    </List.Description>
+                </List.Content>
+            </List.Item>
+            <List.Item>
+            <Rating icon='star' defaultRating={5} maxRating={5} disabled/>
+                <List.Content>
+                    <List.Header as='a'>Sam</List.Header>
+                    <List.Description>
+                        Very helpfull
+                    </List.Description>
+                </List.Content>
+            </List.Item>
+                <List.Item>
+                <Rating icon='star' defaultRating={1} maxRating={5} disabled />
+                <List.Content>
+                    <List.Header as='a'>John</List.Header>
+                    <List.Description>
+                        Great easy to use
+                    </List.Description>
+                </List.Content>
+            </List.Item>
+        </List>
     </Container>
 );
 
