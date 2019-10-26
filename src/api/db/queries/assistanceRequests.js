@@ -14,6 +14,10 @@ class AssistanceRequestQueries {
             .insert(assistanceRequest)
             .returning('*');
     }
+
+    set() {
+        return this.db('assistanceRequests');
+    }
 }
 
 module.exports = AssistanceRequestQueries;

@@ -26,6 +26,7 @@ const App = props => {
         <BrowserRouter>
             <div className="App">
                 <RunOnLoad />
+                <Realtime />
                 <Container>
                     <Switch>
                         <Route exact path="/" component={Home} />

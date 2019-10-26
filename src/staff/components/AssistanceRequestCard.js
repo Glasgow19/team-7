@@ -8,13 +8,13 @@ export default class AssistanceRequestCard extends Component {
         console.log(assistanceRequest);
 
         const { id, payload } = assistanceRequest;
-        const { summary, description } = payload;
 
+        const summary = `Assistance request #${id}`;
         return (
-            <Card>
-                <Card.Content header={summary} />
+            <Card color={payload && payload.aidType == 'HEALTH' ? 'red' : 'grey'}>
                 <Card.Content>
-                    <p>{description}</p>
+                    <Card.Header>{summary}</Card.Header>
+                    <p>{JSON.stringify(payload)}</p>
                     <span className="date">5 minutes ago</span>
                 </Card.Content>
                 <Card.Content extra>
