@@ -45,7 +45,7 @@ class Navigation extends Component {
                         <Menu.Item as={NavLink} exact to="/" header>
                             Staff
                         </Menu.Item>
-                        <Menu.Item as={NavLink} exact to="/page2">
+                        <Menu.Item as={NavLink} exact to="/page3">
                             Feedback
                         </Menu.Item>
                         <LoginButton />
