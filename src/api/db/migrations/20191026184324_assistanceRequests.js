@@ -2,10 +2,8 @@ exports.up = knex => {
     return knex.schema.createTable('assistanceRequests', table => {
         table.increments();
         table.json('payload').notNullable();
-        table.string('connectionId');
+        table.string('connectionId').unique();
         table.timestamp('dateReceieved').defaultTo(knex.fn.now());
-        table.integer('staff_user_id');
-        table.foreign('staff_user_id').references('users.id');
     });
 };
 

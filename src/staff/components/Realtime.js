@@ -1,20 +1,29 @@
 import React, { Component } from 'react';
 import socketIOClient from 'socket.io-client';
-import apiUrl from '../apiUrl';
 
 export default class Realtime extends Component {
     constructor() {
         super();
+        this.state = {
+            response: false,
+            endpoint: 'http://localhost:5678',
+            reconnection: true,
+            reconnectionAttempts: Infinity,
+        };
     }
 
     componentDidMount() {
-        const socket = socketIOClient(apiUrl, { reconnection: true });
+        const { endpoint } = this.state;
+        const socket = socketIOClient(endpoint);
 
         socket.on('connected', payload => {
             console.log(payload.hello);
-            console.log(socket);
-
             this.setState({ response: payload });
+        });
+
+        socket.on('helpReceived', payload => {
+            console.log(payload);
+            alert('help received');
         });
 
         window.socket = socket;
