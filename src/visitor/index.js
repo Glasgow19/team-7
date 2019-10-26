@@ -18,6 +18,7 @@ import Realtime from './components/Realtime';
 import Register from './components/Register';
 import RunOnLoad from './components/common/RunOnLoad';
 import configureStore from './store';
+import HealthAssistanceDetails from './components/HealthAssistanceDetails';
 
 const App = props => {
     const { isAuthenticated } = props;
@@ -35,6 +36,11 @@ const App = props => {
                             isAuthenticated={isAuthenticated}
                         />
                         <Route exact path="/navhelp1" component={NavigationHelp1} />
+                        <Route
+                            exact
+                            path="/health-assistance-details"
+                            component={HealthAssistanceDetails}
+                        />
                         <Route exact path="/helpsent" component={HelpSent} />
                         <Route exact path="/details" component={Details} />
                         <Route exact path="/moreinfo" component={MoreInfo} />

@@ -3,8 +3,6 @@ import apiUrl from './apiUrl';
 
 export const createAssistanceRequest = async ({ payload }) => {
     const connectionId = window.socket.id;
-
-    console.log('to send', payload, connectionId);
     const result = await fetch(`${apiUrl}/api/assistance-requests`, {
         method: 'POST',
         headers: {

@@ -19,4 +19,10 @@ export default {
             payload: { details },
         };
     },
+    setHealthAssistanceDetails: details => {
+        return {
+            type: ActionTypes.SET_HEALTH_ASSISTANCE_DETAILS,
+            payload: { details },
+        };
+    },
 };

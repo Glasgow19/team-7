@@ -8,6 +8,8 @@ const formReducer = (state = {}, action) => {
             return { ...state, callReason: action.payload.callReason };
         case ActionTypes.ADD_EXTRA_DETAILS:
             return { ...state, extraDetails: action.payload.details };
+        case ActionTypes.SET_HEALTH_ASSISTANCE_DETAILS:
+            return { ...state, healthDetails: action.payload.details };
         default:
             return state;
     }

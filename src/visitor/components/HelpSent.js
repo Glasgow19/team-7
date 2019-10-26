@@ -3,10 +3,6 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Header, Container, Image, Segment, Button } from 'semantic-ui-react';
 
-import FormActions from '../actions/form';
-import { loggedIn, getLoggedInUser, getToken } from '../AuthService';
-import pollos from '../pollos.jpg';
-
 class HelpSent extends Component {
     constructor(props) {
         super(props);
@@ -15,14 +11,8 @@ class HelpSent extends Component {
         };
     }
 
-    nextPath(path) {
-        this.props.history.push(path);
-    }
-
+    componentDidMount() {}
     render() {
-        const { user } = this.state;
-        const { updateUser } = this.props;
-
         return (
             <Container>
                 <Segment textAlign="center">
