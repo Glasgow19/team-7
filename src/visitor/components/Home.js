@@ -3,9 +3,8 @@ import { connect } from 'react-redux';
 import { Header, Container, Image, Segment, Button } from 'semantic-ui-react';
 
 import UserActions from '../actions/user';
-import { loggedIn, getLoggedInUser, getToken } from '../AuthService';
 import pollos from '../pollos.jpg';
-
+import { createAssistanceRequest } from '../ApiService';
 import SpeechRecognizer from './SpeechRecognizer';
 
 class Home extends Component {
@@ -17,20 +16,21 @@ class Home extends Component {
     }
 
     render() {
-        const { user } = this.state;
-        const { updateUser } = this.props;
-        const header = loggedIn() ? (
-            <Header>Home : {getLoggedInUser().email} </Header>
-        ) : (
-            <Header>Home </Header>
-        );
+        const payload = {
+            summary: 'Minor issue dynamic',
+            description: 'Minor issue #1dynamic',
+            category: 'other',
+            location: {
+                latitude: 123,
+                longitude: 23,
+            },
+        };
 
         return (
             <Container>
                 <h1>Visitor</h1>
 
                 <Segment>
-                    {header}
                     <Image src={pollos} centered className="medium" />
                     <p>
                         Los Pollos Hermanos was a fast-food restaurant chain that specialized in
@@ -43,9 +43,12 @@ class Home extends Component {
                         content="Send it"
                         onClick={(event, args) => {
                             const socket = window.socket;
-                            console.log(socket);
 
-                            socket.emit('help', { form: { a: '1', b: 23 } });
+                            createAssistanceRequest({ payload }).then(response => {
+                                console.log(response);
+                                const { assistanceRequest } = response;
+                                socket.emit('newAssistanceRequest', { assistanceRequest });
+                            });
                         }}
                     />
                 </Segment>

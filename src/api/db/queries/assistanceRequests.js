@@ -4,11 +4,15 @@ class AssistanceRequestQueries {
     }
 
     get(query = {}) {
-        return this.db('assistanceRequests').where(query);
+        return this.db('assistanceRequests')
+            .where(query)
+            .orderBy('dateReceieved', 'desc');
     }
 
     create(assistanceRequest) {
-        return this.db('assistanceRequests').insert(assistanceRequest);
+        return this.db('assistanceRequests')
+            .insert(assistanceRequest)
+            .returning('*');
     }
 }
 

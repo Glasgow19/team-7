@@ -23,21 +23,19 @@ const App = props => {
                 <RunOnLoad />
                 <Realtime />
                 <Navigation />
-                <Container>
-                    <Switch>
-                        <Route exact path="/" component={Home} />
-                        <ProtectedRoute
-                            exact
-                            path="/page2"
-                            component={Page2}
-                            isAuthenticated={isAuthenticated}
-                        />
-                        <Route exact path="/page3" component={Page3} />
-                        <Route exact path="/login" component={Login} />
-                        <Route exact path="/register" component={Register} />
-                        <Redirect to="/" />
-                    </Switch>
-                </Container>
+                <Switch>
+                    <Route exact path="/" component={Home} />
+                    <ProtectedRoute
+                        exact
+                        path="/page2"
+                        component={Page2}
+                        isAuthenticated={isAuthenticated}
+                    />
+                    <Route exact path="/page3" component={Page3} />
+                    <Route exact path="/login" component={Login} />
+                    <Route exact path="/register" component={Register} />
+                    <Redirect to="/" />
+                </Switch>
             </div>
         </BrowserRouter>
     );

@@ -4,14 +4,12 @@ import '/./feedback.css';
 import logo from '/./gsc_logo.svg';
 
 const Page3 = () => (
-    
-
-    <Container>
-        <div class = 'topbar'>
-            <img class = 'logo' src={logo}/>
+    <div>
+        <div className="topbar">
+            <img className="logo" src={logo} />
         </div>
-        <p class = 'Title'>Feedback Center</p>
-    </Container>
+        <p className="Title">Feedback Center</p>
+    </div>
 );
 
 export default Page3;
