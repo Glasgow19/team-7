@@ -44,7 +44,8 @@ const Page3 = () => (
             <img class = 'logo' src={logo}/>
         </div>
         <p class = 'Title'>Feedback Center</p>
-        <div>
+
+        <div class = 'piestorage'>
           <h2>Rating</h2>
           <Pie data={data} />
         </div>
