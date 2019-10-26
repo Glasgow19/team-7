@@ -11,21 +11,27 @@ const data = {
 
     ],
 	labels: [
-		'Happy',
-		'Neutrel',
-		'Unhappy'
+		'Excelent(5 stars)',
+		'Very Good(4 stars)',
+        'Good(3 stars)',
+        'Bad(2 stars)',
+        'Very Bad(1 stars)'
 	],
 	datasets: [{
 		data: [51, 20, 10,10,9],
 		backgroundColor: [
-		'#00ff00',
-		'#ffff00',
+        '#00ff00',
+        '#afff00',
+        '#ffff00',
+        '#ffa500',
 		'#ff0000'
 		],
 		hoverBackgroundColor: [
-		'#FF6384',
-		'#36A2EB',
-		'#FFCE56'
+        '#00ff00',
+        '#afff00',
+        '#ffff00',
+        '#ffa500',
+        '#ff0000'
 		]
 	}]
 };
