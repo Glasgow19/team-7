@@ -7,10 +7,7 @@ import FormActions from '../actions/form';
 import { loggedIn, getLoggedInUser, getToken } from '../AuthService';
 import pollos from '../pollos.jpg';
 
-const HEALTH_AID = 'HEALTH';
-const NAVIGATION_AID = 'NAVIGATION';
-
-class Home extends Component {
+class HelpSent extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -29,15 +26,9 @@ class Home extends Component {
         return (
             <Container>
                 <Segment textAlign="center">
-                    <p>Do you want a navigation aid or to request a exhibit guide?</p>
-                    <Button
-                        fluid
-                        content="Yes"
-                        onClick={() => {
-                            this.nextPath('/navhelp1');
-                            this.props.setAidType(NAVIGATION_AID);
-                        }}
-                    />
+                    <h2> Thank You </h2>
+                    <p>A staff member will be with you soon</p>
+                    <p>Please stay in your current location</p>
                 </Segment>
             </Container>
         );
@@ -45,13 +36,11 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => ({});
-const mapDispatchToProps = dispatch => ({
-    setAidType: aidType => dispatch(FormActions.setAidType(aidType)),
-});
+const mapDispatchToProps = dispatch => ({});
 
 export default withRouter(
     connect(
         mapStateToProps,
         mapDispatchToProps,
-    )(Home),
+    )(HelpSent),
 );

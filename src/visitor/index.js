@@ -7,6 +7,10 @@ import { Container } from 'semantic-ui-react';
 import ProtectedRoute from './components/ProtectedRoute';
 import Navigation from './components/common/Navigation';
 import Home from './components/Home';
+import NavigationHelp1 from './components/NavigationHelp1';
+import HelpSent from './components/HelpSent';
+import MoreInfo from './components/MoreInfo';
+import Details from './components/Details';
 import Page2 from './components/Page2';
 import Page3 from './components/Page3';
 import Login from './components/Login';
@@ -21,8 +25,6 @@ const App = props => {
         <BrowserRouter>
             <div className="App">
                 <RunOnLoad />
-                <Realtime />
-                <Navigation />
                 <Container>
                     <Switch>
                         <Route exact path="/" component={Home} />
@@ -32,7 +34,10 @@ const App = props => {
                             component={Page2}
                             isAuthenticated={isAuthenticated}
                         />
-                        <Route exact path="/page3" component={Page3} />
+                        <Route exact path="/navhelp1" component={NavigationHelp1} />
+                        <Route exact path="/helpsent" component={HelpSent} />
+                        <Route exact path="/details" component={Details} />
+                        <Route exact path="/moreinfo" component={MoreInfo} />
                         <Route exact path="/login" component={Login} />
                         <Route exact path="/register" component={Register} />
                         <Redirect to="/" />

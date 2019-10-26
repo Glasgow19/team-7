@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Header, Container, Image, Segment, Button } from 'semantic-ui-react';
+import { Header, Container, Image, Segment, Button, Form, Input } from 'semantic-ui-react';
 
 import FormActions from '../actions/form';
 import { loggedIn, getLoggedInUser, getToken } from '../AuthService';
 import pollos from '../pollos.jpg';
 
-const HEALTH_AID = 'HEALTH';
-const NAVIGATION_AID = 'NAVIGATION';
+const EXPLANATION = 'EXPLANATION';
+const FIND_EXHIBIT = 'FIND_EXHIBIT';
+const OTHER = 'OTHER';
 
-class Home extends Component {
+class Details extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -25,19 +26,23 @@ class Home extends Component {
     render() {
         const { user } = this.state;
         const { updateUser } = this.props;
+        const handleChange = (event, args) => {
+            this.setState({ value: args.value });
+        };
 
         return (
             <Container>
                 <Segment textAlign="center">
-                    <p>Do you want a navigation aid or to request a exhibit guide?</p>
-                    <Button
-                        fluid
-                        content="Yes"
-                        onClick={() => {
-                            this.nextPath('/navhelp1');
-                            this.props.setAidType(NAVIGATION_AID);
+                    <h1>Can you explain what you need?</h1>
+                    <Form
+                        onSubmit={event => {
+                            this.props.addExtraDetails(this.state.value);
+                            this.nextPath('/helpsent');
                         }}
-                    />
+                    >
+                        <Input type="text" name="detailInput" onChange={handleChange} />
+                        <Button type="submit">Submit</Button>
+                    </Form>
                 </Segment>
             </Container>
         );
@@ -46,12 +51,12 @@ class Home extends Component {
 
 const mapStateToProps = state => ({});
 const mapDispatchToProps = dispatch => ({
-    setAidType: aidType => dispatch(FormActions.setAidType(aidType)),
+    addExtraDetails: details => dispatch(FormActions.addExtraDetails(details)),
 });
 
 export default withRouter(
     connect(
         mapStateToProps,
         mapDispatchToProps,
-    )(Home),
+    )(Details),
 );

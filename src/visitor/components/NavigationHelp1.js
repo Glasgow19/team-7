@@ -7,10 +7,11 @@ import FormActions from '../actions/form';
 import { loggedIn, getLoggedInUser, getToken } from '../AuthService';
 import pollos from '../pollos.jpg';
 
-const HEALTH_AID = 'HEALTH';
-const NAVIGATION_AID = 'NAVIGATION';
+const EXPLANATION = 'EXPLANATION';
+const FIND_EXHIBIT = 'FIND_EXHIBIT';
+const OTHER = 'OTHER';
 
-class Home extends Component {
+class NavigationHelp1 extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -29,13 +30,29 @@ class Home extends Component {
         return (
             <Container>
                 <Segment textAlign="center">
-                    <p>Do you want a navigation aid or to request a exhibit guide?</p>
+                    <h1>What do you need?</h1>
                     <Button
                         fluid
-                        content="Yes"
+                        content="Request Further Explanation"
                         onClick={() => {
-                            this.nextPath('/navhelp1');
-                            this.props.setAidType(NAVIGATION_AID);
+                            this.props.setCallReason(EXPLANATION);
+                            this.nextPath('/moreinfo');
+                        }}
+                    />
+                    <Button
+                        fluid
+                        content="Find Particular Exhibit"
+                        onClick={() => {
+                            this.props.setCallReason(FIND_EXHIBIT);
+                            this.nextPath('/moreinfo');
+                        }}
+                    />
+                    <Button
+                        fluid
+                        content="Other"
+                        onClick={() => {
+                            this.props.setCallReason(OTHER);
+                            this.nextPath('/moreinfo');
                         }}
                     />
                 </Segment>
@@ -46,12 +63,12 @@ class Home extends Component {
 
 const mapStateToProps = state => ({});
 const mapDispatchToProps = dispatch => ({
-    setAidType: aidType => dispatch(FormActions.setAidType(aidType)),
+    setCallReason: callReason => dispatch(FormActions.setCallReason(callReason)),
 });
 
 export default withRouter(
     connect(
         mapStateToProps,
         mapDispatchToProps,
-    )(Home),
+    )(NavigationHelp1),
 );
