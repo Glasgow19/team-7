@@ -43,13 +43,10 @@ class Navigation extends Component {
                 <Menu inverted pointing secondary>
                     <Container>
                         <Menu.Item as={NavLink} exact to="/" header>
-                            Los Pollos Hermanos
+                            Staff
                         </Menu.Item>
                         <Menu.Item as={NavLink} exact to="/page2">
-                            Page2
-                        </Menu.Item>
-                        <Menu.Item as={NavLink} exact to="/page3">
-                            Page3
+                            Feedback
                         </Menu.Item>
                         <LoginButton />
                         <Menu.Menu position="right">

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Header, Container, Image, Segment, Button } from 'semantic-ui-react';
-
+import { Header, Container, Image, Grid, Comment } from 'semantic-ui-react';
 import UserActions from '../actions/user';
 import { loggedIn, getLoggedInUser, getToken } from '../AuthService';
 import pollos from '../pollos.jpg';
+import AssistanceCardsGrid from './AssistanceCardsGrid';
 
 class Home extends Component {
     constructor(props) {
@@ -26,25 +26,63 @@ class Home extends Component {
         return (
             <Container>
                 <h1>Staff</h1>
-                <Segment>
-                    {header}
-                    <Image src={pollos} centered className="medium" />
-                    <p>
-                        Los Pollos Hermanos was a fast-food restaurant chain that specialized in
-                        fried chicken operating across the southwestern United States. The name,
-                        pronounced [los ˈpo.ʝos eɾˈma.nos], is ungrammatical Spanish for "The
-                        Chicken Brothers."
-                    </p>
-                    <Button
-                        content="Send it"
-                        onClick={(event, args) => {
-                            const socket = window.socket;
-                            console.log(socket);
+                <Grid divided="vertically">
+                    <Grid.Row columns={2}>
+                        <Grid.Column width="13">
+                            <AssistanceCardsGrid />
+                        </Grid.Column>
+                        <Grid.Column width="3">
+                            <Comment.Group>
+                                <Header as="h3" dividing>
+                                    Feedback
+                                </Header>
 
-                            socket.emit('help', { form: { a: '1', b: 23 } });
-                        }}
-                    />
-                </Segment>
+                                <Comment>
+                                    <Comment.Content>
+                                        <Comment.Author as="a">Matt</Comment.Author>
+                                        <Comment.Metadata>
+                                            <div>Today at 5:42PM</div>
+                                        </Comment.Metadata>
+                                        <Comment.Text>How artistic!</Comment.Text>
+                                        <Comment.Actions>
+                                            <Comment.Action>Which card?</Comment.Action>
+                                        </Comment.Actions>
+                                    </Comment.Content>
+                                    <Comment.Content>
+                                        <Comment.Author as="a">Matt</Comment.Author>
+                                        <Comment.Metadata>
+                                            <div>Today at 5:42PM</div>
+                                        </Comment.Metadata>
+                                        <Comment.Text>How artistic!</Comment.Text>
+                                        <Comment.Actions>
+                                            <Comment.Action>Which card?</Comment.Action>
+                                        </Comment.Actions>
+                                    </Comment.Content>
+                                    <Comment.Content>
+                                        <Comment.Author as="a">Matt</Comment.Author>
+                                        <Comment.Metadata>
+                                            <div>Today at 5:42PM</div>
+                                        </Comment.Metadata>
+                                        <Comment.Text>How artistic!</Comment.Text>
+                                        <Comment.Actions>
+                                            <Comment.Action>Which card?</Comment.Action>
+                                        </Comment.Actions>
+                                    </Comment.Content>
+                                    <Comment.Content>
+                                        <Comment.Author as="a">Matt</Comment.Author>
+                                        <Comment.Metadata>
+                                            <div>Today at 5:42PM</div>
+                                        </Comment.Metadata>
+                                        <Comment.Text>How artistic!</Comment.Text>
+                                        <Comment.Actions>
+                                            <Comment.Action>Which card?</Comment.Action>
+                                        </Comment.Actions>
+                                    </Comment.Content>
+                                </Comment>
+                            </Comment.Group>
+                        </Grid.Column>
+                    </Grid.Row>
+                </Grid>
             </Container>
         );
     }
