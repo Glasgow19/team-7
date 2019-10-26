@@ -3,13 +3,11 @@ import { Header, Container, Segment } from 'semantic-ui-react';
 import '/./feedback.css';
 import logo from '/./gsc_logo.svg';
 import {Pie} from 'react-chartjs-2'
+import { List, Image } from 'semantic-ui-react'
+
 
 
 const data = {
-    legend:[
-        
-
-    ],
 	labels: [
 		'Excelent(5 stars)',
 		'Very Good(4 stars)',
@@ -38,7 +36,6 @@ const data = {
 
 const Page3 = () => (
     
-
     <Container>
         <div class = 'topbar'>
             <img class = 'logo' src={logo}/>
@@ -49,6 +46,26 @@ const Page3 = () => (
           <h2>Rating</h2>
           <Pie data={data} />
         </div>
+        <List>
+    <List.Item>
+    <Image avatar src='' />
+      <List.Content>
+        <List.Header as='a'>Rachel</List.Header>
+        <List.Description>
+            Loved it
+        </List.Description>
+      </List.Content>
+    </List.Item>
+    <List.Item>
+    <Image avatar src='' />
+      <List.Content>
+        <List.Header as='a'>Archie</List.Header>
+        <List.Description>
+            meeeh
+        </List.Description>
+      </List.Content>
+    </List.Item>
+  </List>
     </Container>
 );
 
