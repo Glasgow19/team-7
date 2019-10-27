@@ -32,7 +32,7 @@ class Home extends Component {
                     </div>
                     <p className="Title">Glasgow Science Center Help Portal</p>
                     <Button
-                        size="massive"
+                        size="huge"
                         icon="list"
                         fluid
                         content="Want navigation aid or to request a exhibit guide?"
@@ -43,7 +43,7 @@ class Home extends Component {
                     />
                     <Button
                         fluid
-                        size="massive"
+                        size="huge"
                         icon="heart"
                         color="red"
                         content="Want health assistance?"

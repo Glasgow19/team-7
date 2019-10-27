@@ -49,11 +49,12 @@ class HelpSent extends Component {
                     </div>
                     <p className="Title">Glasgow Science Center Help Portal</p>
                     <h2> Thank You </h2>
-                    <p>A staff member will be with you soon</p>
-                    <p>Please stay in your current location</p>
+                    <p size="big">A staff member will be with you soon</p>
                 </Segment>
                 <Segment textAlign="center">
                     <Button
+                        fluid
+                        size="huge"
                         onClick={() => {
                             this.props.clearFormStore();
                             this.nextPath('/home');
@@ -62,6 +63,9 @@ class HelpSent extends Component {
                         Return to main menu
                     </Button>
                     <Button
+                        fluid
+                        size="huge"
+                        color="grey"
                         onClick={() => {
                             this.nextPath('/feedback1');
                         }}

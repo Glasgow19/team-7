@@ -40,7 +40,7 @@ class MoreInfo extends Component {
                     <Button
                         fluid
                         content="Yes"
-                        size="massive"
+                        size="huge"
                         onClick={() => {
                             this.nextPath('/details');
                         }}
@@ -48,7 +48,8 @@ class MoreInfo extends Component {
                     <Button
                         fluid
                         content="No"
-                        size="massive"
+                        color="grey"
+                        size="huge"
                         onClick={() => {
                             this.nextPath('/helpsent');
                         }}
