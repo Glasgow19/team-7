@@ -22,19 +22,17 @@ class Feedback2 extends Component {
         };
 
         const sendFeedback = () => {
-            const { assistanceRequestDetails } = this.props;
+            const { feedback } = this.props;
 
-            if (assistanceRequestDetails) {
-                createAssistanceRequest({ payload: assistanceRequestDetails }).then(
-                    createdAssistanceRequest => {
-                        console.log(createdAssistanceRequest);
+            if (feedback) {
+                createAssistanceRequest({ payload: feedback }).then(createdAssistanceRequest => {
+                    console.log(createdAssistanceRequest);
 
-                        alert('done boi feedback edition');
-                        if (window.socket) {
-                            window.socket.emit('newFeedback', createdAssistanceRequest);
-                        }
-                    },
-                );
+                    alert('done boi feedback edition');
+                    if (window.socket) {
+                        window.socket.emit('newFeedback', createdAssistanceRequest);
+                    }
+                });
             }
         };
 
@@ -59,7 +57,7 @@ class Feedback2 extends Component {
 
 const mapStateToProps = state => {
     const { feedbackScore, feedbackDetails } = state.form;
-    return { assistanceRequestDetails: { feedbackScore, feedbackDetails } };
+    return { feedback: { feedbackScore, feedbackDetails } };
 };
 const mapDispatchToProps = dispatch => ({
     addFeedbackDetails: feedbackDetails =>
