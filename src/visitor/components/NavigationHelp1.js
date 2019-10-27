@@ -8,6 +8,7 @@ import { loggedIn, getLoggedInUser, getToken } from '../AuthService';
 import pollos from '../pollos.jpg';
 import '../../stylesheet.css';
 import logo from '/../gsc_logo.svg';
+import Speech from 'react-speech';
 
 const EXPLANATION = 'EXPLANATION';
 const FIND_EXHIBIT = 'FIND_EXHIBIT';
@@ -36,6 +37,7 @@ class NavigationHelp1 extends Component {
                         <img className="logo" src={logo} />
                     </div>
                     <p className="Title">Glasgow Science Center Help Portal</p>
+                    <Speech text="What do you need. Request further explanation. Find particular exibit. Other." />
                     <h1>What do you need?</h1>
                     <Button
                         fluid
