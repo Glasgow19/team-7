@@ -5,7 +5,7 @@ import { Header, Container, Image, Segment, Button } from 'semantic-ui-react';
 import FormActions from '../actions/form';
 import '../../stylesheet.css';
 import logo from '../gsc_logo.svg';
-
+import Speech from 'react-speech';
 import { createAssistanceRequest } from '../ApiService';
 
 class HelpSent extends Component {
@@ -48,6 +48,7 @@ class HelpSent extends Component {
                         <img className="logo" src={logo} />
                     </div>
                     <p className="Title">Glasgow Science Center Help Portal</p>
+                    <Speech text="Thank you. A staff member will be with you soon. Please stay in your current location." />
                     <h2> Thank You </h2>
                     <p size="big">A staff member will be with you soon</p>
                 </Segment>
