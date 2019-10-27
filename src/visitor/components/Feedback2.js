@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { Container, Image, Segment, Button, Form, Input } from 'semantic-ui-react';
 
 import FormActions from '../actions/form';
-import { createAssistanceRequest } from '../ApiService';
+import { createFeedback } from '../ApiService';
 
 class Feedback2 extends Component {
     constructor(props) {
@@ -25,12 +25,12 @@ class Feedback2 extends Component {
             const { feedback } = this.props;
 
             if (feedback) {
-                createAssistanceRequest({ payload: feedback }).then(createdAssistanceRequest => {
-                    console.log(createdAssistanceRequest);
+                createFeedback(feedback).then(createdFeedback => {
+                    console.log(createdFeedback);
 
-                    alert('done boi feedback edition');
+                    alert('done boi feedback');
                     if (window.socket) {
-                        window.socket.emit('newFeedback', createdAssistanceRequest);
+                        window.socket.emit('newFeedback', createdFeedback);
                     }
                 });
             }
@@ -43,6 +43,7 @@ class Feedback2 extends Component {
                     <Form
                         onSubmit={event => {
                             this.props.addFeedbackDetails(this.state.value);
+                            sendFeedback();
                             this.nextPath('/home');
                         }}
                     >

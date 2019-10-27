@@ -19,7 +19,7 @@ class Feedback1 extends Component {
         const { user } = this.state;
         const { updateUser } = this.props;
         const handleChange = (event, args) => {
-            this.setState({ feedbackScore: args.rating });
+            this.props.addFeedbackScore(args.rating);
         };
 
         return (
@@ -35,7 +35,6 @@ class Feedback1 extends Component {
                     />
                     <Button
                         onClick={() => {
-                            this.props.addFeedbackScore(this.state.feedbackScore);
                             this.nextPath('/feedback2');
                         }}
                     >
