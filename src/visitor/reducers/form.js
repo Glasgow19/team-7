@@ -10,6 +10,12 @@ const formReducer = (state = {}, action) => {
             return { ...state, extraDetails: action.payload.details };
         case ActionTypes.SET_HEALTH_ASSISTANCE_DETAILS:
             return { ...state, healthDetails: action.payload.details };
+        case ActionTypes.ADD_FEEDBACK_SCORE:
+            return { ...state, feedbackScore: action.payload.score };
+        case ActionTypes.ADD_FEEDBACK_DETAILS:
+            return { ...state, feedbackDetails: action.payload.feedbackDetails };
+        case ActionTypes.CLEAR_FORM_STORE:
+            return {};
         default:
             return state;
     }
