@@ -8,6 +8,7 @@ import { loggedIn, getLoggedInUser, getToken } from '../AuthService';
 import pollos from '../pollos.jpg';
 import '../../stylesheet.css';
 import logo from '/../gsc_logo.svg';
+import Speech from 'react-speech';
 
 const EXPLANATION = 'EXPLANATION';
 const FIND_EXHIBIT = 'FIND_EXHIBIT';
@@ -35,7 +36,8 @@ class MoreInfo extends Component {
                     <div className="topbar">
                         <img className="logo" src={logo} />
                     </div>
-                    <p className="Title">Glasgow Science Center Help Portal</p>
+                    <p class="Title">Glasgow Science Center Help Portal</p>
+                    <Speech text="Do you want to give more details. Yes. No" />
                     <h1>Do you want to give more details?</h1>
                     <Button
                         fluid

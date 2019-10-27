@@ -26,4 +26,15 @@ router.post(baseUrl, async ctx => {
     return error({ message: `Failed when storing ${(payload, connectionId)} into db.` });
 });
 
+router.post(baseUrl + '/assist', async ctx => {
+    const { submittedByConnectionId } = ctx.request.body;
+    console.log(submittedByConnectionId);
+
+    global.socketIo
+        .to(submittedByConnectionId)
+        .emit('visitor:helpIsComing', { message: 'comes boi' });
+
+    ok(ctx, { assistanceRequest: ctx.request.body });
+});
+
 module.exports = router;

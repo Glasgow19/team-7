@@ -6,19 +6,29 @@ import en from 'javascript-time-ago/locale/en';
 import red from '../red.png';
 import other from '../other.png';
 
+import { assist } from '../ApiService';
 export default class AssistanceRequestCard extends Component {
     render() {
         const { assistanceRequest } = this.props;
         const { id, payload, status, dateReceieved } = assistanceRequest;
 
-        const handleAssisting = () => {};
+        const handleAssisting = () => {
+            console.log(assistanceRequest);
+
+            assist({
+                test: 'asadasd',
+                submittedByConnectionId: assistanceRequest.connectionId,
+                assistanceRequest: assistanceRequest,
+            }).then(response => {
+                console.log(response);
+            });
+        };
         const handleDetails = () => {};
 
         TimeAgo.addLocale(en);
         const timeAgo = new TimeAgo('en-US');
         const timeAgoString = timeAgo.format(new Date(dateReceieved));
         const summary = `Assistance request #${id}`;
-        console.log(timeAgoString);
 
         const description = (
             <div>
