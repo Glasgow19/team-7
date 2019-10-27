@@ -18,6 +18,7 @@ class HelpSent extends Component {
 
     componentDidMount() {
         const { assistanceRequestDetails } = this.props;
+        console.log(assistanceRequestDetails);
 
         if (assistanceRequestDetails) {
             createAssistanceRequest({
