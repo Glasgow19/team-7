@@ -31,6 +31,7 @@ const server = app.listen(port, () => {
 });
 
 const io = require('socket.io')(server);
+global.socketIo = io;
 
 io.on('connection', clientSocket => {
     clientSocket.emit('connected', { hello: 'hello boi' });

@@ -26,7 +26,11 @@ export default class Realtime extends Component {
             alert('help received');
         });
 
-        window.socket = socket;
+        socket.on('visitor:helpIsComing', payload => {
+            alert(payload);
+        });
+
+        global.socket = socket;
     }
 
     render() {
