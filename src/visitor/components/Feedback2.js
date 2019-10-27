@@ -48,7 +48,8 @@ class Feedback2 extends Component {
                     <Form
                         onSubmit={event => {
                             this.props.addFeedbackDetails(this.state.value);
-                            sendFeedback();
+                            console.log(this.props.feedback);
+                            //sendFeedback();
                             this.nextPath('/home');
                         }}
                     >

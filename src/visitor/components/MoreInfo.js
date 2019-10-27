@@ -32,10 +32,10 @@ class MoreInfo extends Component {
         return (
             <Container>
                 <Segment textAlign="center">
-                    <div class="topbar">
-                        <img class="logo" src={logo} />
+                    <div className="topbar">
+                        <img className="logo" src={logo} />
                     </div>
-                    <p class="Title">Glasgow Science Center Help Portal</p>
+                    <p className="Title">Glasgow Science Center Help Portal</p>
                     <h1>Do you want to give more details?</h1>
                     <Button
                         fluid
