@@ -1,0 +1,15 @@
+.title{
+    padding-top: 20px;
+    font-size: 30px;
+}
+
+.logo{
+    height: 60px;
+    background-color: #2e2d44;
+}
+
+.topbar{
+    margin: 0px;
+    padding :45px;
+    background-color:#2e2d44;
+}

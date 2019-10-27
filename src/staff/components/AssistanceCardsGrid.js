@@ -21,24 +21,24 @@ export default class AssistanceCardsGrid extends Component {
 
     componentDidMount() {
         window.socket.on('staff:newAssistanceRequest', payload => {
-            // store.addNotification({
-            //     title: 'New Assistance request received!',
-            //     message: `${payload.id}`,
-            //     type: 'danger',
-            //     insert: 'top',
-            //     container: 'top-right',
-            //     animationIn: ['animated', 'fadeIn'],
-            //     animationOut: ['animated', 'fadeOut'],
-            //     dismiss: {
-            //         duration: 20000,
-            //         onScreen: true,
-            //     },
-            //     onRemoval: (id, removedBy) => {
-            //         if (removedBy == 'click') {
-            //             console.log('handle open details for this notification');
-            //         }
-            //     },
-            // });
+            store.addNotification({
+                title: 'New Assistance request received!',
+                message: `${payload.id}`,
+                type: 'danger',
+                insert: 'top',
+                container: 'top-right',
+                animationIn: ['animated', 'fadeIn'],
+                animationOut: ['animated', 'fadeOut'],
+                dismiss: {
+                    duration: 20000,
+                    onScreen: true,
+                },
+                onRemoval: (id, removedBy) => {
+                    if (removedBy == 'click') {
+                        console.log('handle open details for this notification');
+                    }
+                },
+            });
 
             this.setState({ easyGridReload });
             easyGridReload();
