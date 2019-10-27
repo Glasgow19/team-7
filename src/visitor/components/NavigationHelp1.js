@@ -39,7 +39,7 @@ class NavigationHelp1 extends Component {
                     <h1>What do you need?</h1>
                     <Button
                         fluid
-                        size="massive"
+                        size="huge"
                         icon="lightbulb"
                         content="Request Further Explanation"
                         onClick={() => {
@@ -49,8 +49,9 @@ class NavigationHelp1 extends Component {
                     />
                     <Button
                         fluid
-                        size="massive"
+                        size="huge"
                         icon="map"
+                        color="grey"
                         content="Find Particular Exhibit"
                         onClick={() => {
                             this.props.setCallReason(FIND_EXHIBIT);
@@ -59,7 +60,7 @@ class NavigationHelp1 extends Component {
                     />
                     <Button
                         fluid
-                        size="massive"
+                        size="huge"
                         icon="list"
                         content="Other"
                         onClick={() => {

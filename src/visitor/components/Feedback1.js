@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { Container, Segment, Button, Rating } from 'semantic-ui-react';
 
 import FormActions from '../actions/form';
+import logo from '/../gsc_logo.svg';
 
 class Feedback1 extends Component {
     constructor(props) {
@@ -25,15 +26,24 @@ class Feedback1 extends Component {
         return (
             <Container>
                 <Segment textAlign="center">
+                    <div className="topbar">
+                        <img className="logo" src={logo} />
+                    </div>
+                    <p className="Title">Glasgow Science Center Help Portal</p>
                     <h1>How well did we help you?</h1>
                     <Rating
+                        fluid
                         maxRating={5}
                         onRate={handleChange}
                         defaultRating={3}
                         icon="star"
                         size="massive"
                     />
+                    <br />
+                    <br />
                     <Button
+                        fluid
+                        size="huge"
                         onClick={() => {
                             this.nextPath('/feedback2');
                         }}

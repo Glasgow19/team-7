@@ -34,15 +34,13 @@ class Details extends Component {
 
         return (
             <Container>
-                
                 <Segment textAlign="center">
+                    <div class="topbar">
+                        <img class="logo" src={logo} />
+                    </div>
 
-                <div class = 'topbar'>
-                    <img class = 'logo' src={logo}/>
-                </div>
+                    <p class="Title">Glasgow Science Center Help Portal</p>
 
-                <p class = 'Title'>Glasgow Science Center Help Portal</p>
-                
                     <h1>Can you explain what you need?</h1>
                     <Form
                         onSubmit={event => {
@@ -50,8 +48,10 @@ class Details extends Component {
                             this.nextPath('/helpsent');
                         }}
                     >
-                        <Input type="text" name="detailInput" onChange={handleChange} />
-                        <Button type="submit">Submit</Button>
+                        <Input fluid type="text" name="detailInput" onChange={handleChange} />
+                        <Button fluid type="submit" size="huge">
+                            Submit
+                        </Button>
                     </Form>
                 </Segment>
             </Container>

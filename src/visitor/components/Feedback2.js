@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Container, Image, Segment, Button, Form, Input } from 'semantic-ui-react';
 
+import logo from '/../gsc_logo.svg';
 import FormActions from '../actions/form';
 import { createFeedback } from '../ApiService';
 
@@ -39,6 +40,10 @@ class Feedback2 extends Component {
         return (
             <Container>
                 <Segment textAlign="center">
+                    <div className="topbar">
+                        <img className="logo" src={logo} />
+                    </div>
+                    <p className="Title">Glasgow Science Center Help Portal</p>
                     <h1>Anything else you want to add?</h1>
                     <Form
                         onSubmit={event => {
@@ -47,8 +52,10 @@ class Feedback2 extends Component {
                             this.nextPath('/home');
                         }}
                     >
-                        <Input type="text" name="detailInput" onChange={handleChange} />
-                        <Button type="submit">That's it</Button>
+                        <Input fluid type="text" name="detailInput" onChange={handleChange} />
+                        <Button fluid size="huge" type="submit">
+                            That's it
+                        </Button>
                     </Form>
                 </Segment>
             </Container>
