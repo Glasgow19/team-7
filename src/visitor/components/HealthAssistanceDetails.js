@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Container, Segment, Button } from 'semantic-ui-react';
+import '../../stylesheet.css';
+import logo from '/../gsc_logo.svg';
 
 import FormActions from '../actions/form';
 
@@ -35,6 +37,11 @@ class HealthAssistanceDetails extends Component {
         return (
             <Container>
                 <Segment textAlign="center">
+                <div class = 'topbar'>
+                    <img class = 'logo' src={logo}/>
+                </div>
+
+                <p class = 'Title'>Glasgow Science Center Help Portal</p>
                     <h1>Are you hurt?</h1>
                     <Button.Group size="large">
                         <Button
