@@ -5,6 +5,7 @@ const bodyparser = require('koa-bodyparser');
 const combinedRoutes = require('./routes/index');
 const userRoutes = require('./routes/user');
 const assistanceRequestRoutes = require('./routes/assistanceRequests');
+const feedbackRoutes = require('./routes/feedbacks');
 
 const db = require('./db/connection');
 const queries = require('./db/queries');
@@ -22,6 +23,7 @@ app.use(async (ctx, next) => {
 app.use(bodyparser());
 app.use(userRoutes.routes());
 app.use(assistanceRequestRoutes.routes());
+app.use(feedbackRoutes.routes());
 app.use(combinedRoutes.routes());
 
 const server = app.listen(port, () => {

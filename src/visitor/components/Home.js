@@ -7,6 +7,7 @@ import FormActions from '../actions/form';
 const HEALTH_AID = 'HEALTH';
 const NAVIGATION_AID = 'NAVIGATION';
 
+import { createFeedback } from '../ApiService';
 class Home extends Component {
     constructor(props) {
         super(props);
@@ -20,6 +21,7 @@ class Home extends Component {
     }
 
     render() {
+        createFeedback({ score: 10, text: 'donnnneee' });
         return (
             <Container>
                 <Segment textAlign="center">
