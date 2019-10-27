@@ -8,6 +8,8 @@ import pollos from '../pollos.jpg';
 
 import SpeechRecognizer from './SpeechRecognizer';
 
+import Speech from 'react-speech';
+
 class Home extends Component {
     constructor(props) {
         super(props);
@@ -24,6 +26,15 @@ class Home extends Component {
         ) : (
             <Header>Home </Header>
         );
+        const styles = {
+                cursor: 'help',
+                pointerEvents: 'none',
+                outline: 'none',
+                backgroundColor: '#66ff99',
+                border: 'solid 1px rgba(255,255,255,1)',
+                borderRadius: 6,
+            
+        };
 
         return (
             <Container>
@@ -39,6 +50,10 @@ class Home extends Component {
                         Chicken Brothers."
                     </p>
                     <SpeechRecognizer />
+                    <Speech
+                        text="Do you even know what I am saying"
+                        //voice="Google UK English Female"  
+                    />
                     <Button
                         content="Send it"
                         onClick={(event, args) => {
@@ -53,6 +68,8 @@ class Home extends Component {
         );
     }
 }
+
+
 
 const mapStateToProps = state => {
     return { user: state.user.user };
