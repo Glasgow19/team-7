@@ -15,3 +15,17 @@ export const createAssistanceRequest = async ({ payload }) => {
     const response = await result.json();
     return response;
 };
+
+export const createFeedback = async feedback => {
+    const result = await fetch(`${apiUrl}/api/feedbacks`, {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ feedback }),
+    });
+
+    const response = await result.json();
+    return response;
+};

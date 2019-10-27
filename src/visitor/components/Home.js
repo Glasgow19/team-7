@@ -3,10 +3,13 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Header, Container, Image, Segment, Button } from 'semantic-ui-react';
 import FormActions from '../actions/form';
+import '../../stylesheet.css';
+import logo from '/../gsc_logo.svg';
 
 const HEALTH_AID = 'HEALTH';
 const NAVIGATION_AID = 'NAVIGATION';
 
+import { createFeedback } from '../ApiService';
 class Home extends Component {
     constructor(props) {
         super(props);
@@ -20,13 +23,19 @@ class Home extends Component {
     }
 
     render() {
+        createFeedback({ score: 10, text: 'donnnneee' });
         return (
             <Container>
                 <Segment textAlign="center">
+                    <div className="topbar">
+                        <img className="logo" src={logo} />
+                    </div>
+                    <p className="Title">Glasgow Science Center Help Portal</p>
                     <Button
+                        size="massive"
                         icon="list"
                         fluid
-                        content="Do you want a navigation aid or to request a exhibit guide?"
+                        content="Want navigation aid or to request a exhibit guide?"
                         onClick={() => {
                             this.nextPath('/navhelp1');
                             this.props.setAidType(NAVIGATION_AID);
@@ -34,12 +43,13 @@ class Home extends Component {
                     />
                     <Button
                         fluid
+                        size="massive"
                         icon="heart"
                         color="red"
-                        content="Do you want a health assistance?"
+                        content="Want health assistance?"
                         onClick={() => {
                             this.nextPath('/health-assistance-details');
-                            this.props.setAidType(HEALTH_AID);
+                            this.props.setAidType(HEART);
                         }}
                     />
                 </Segment>

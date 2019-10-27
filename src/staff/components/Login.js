@@ -32,9 +32,17 @@ class Login extends Component {
         const { updateUser } = this.props;
         const loginResult = await login(email, password);
         const wasLoginSuccessfull = loginResult.wasSuccessfull;
-
+        updateUser({
+            email,
+            fullName: loginResult.fullName,
+            profilePhoto: loginResult.profilePhoto,
+        });
         if (wasLoginSuccessfull) {
-            updateUser({ email });
+            updateUser({
+                email,
+                fullName: loginResult.fullName,
+                profilePhoto: loginResult.profilePhoto,
+            });
         }
 
         this.setState({

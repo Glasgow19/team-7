@@ -6,6 +6,8 @@ import { Header, Container, Image, Segment, Button, Form, Input } from 'semantic
 import FormActions from '../actions/form';
 import { loggedIn, getLoggedInUser, getToken } from '../AuthService';
 import pollos from '../pollos.jpg';
+import '../../stylesheet.css';
+import logo from '/../gsc_logo.svg';
 
 const EXPLANATION = 'EXPLANATION';
 const FIND_EXHIBIT = 'FIND_EXHIBIT';
@@ -32,7 +34,15 @@ class Details extends Component {
 
         return (
             <Container>
+                
                 <Segment textAlign="center">
+
+                <div class = 'topbar'>
+                    <img class = 'logo' src={logo}/>
+                </div>
+
+                <p class = 'Title'>Glasgow Science Center Help Portal</p>
+                
                     <h1>Can you explain what you need?</h1>
                     <Form
                         onSubmit={event => {

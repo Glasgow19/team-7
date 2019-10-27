@@ -1,33 +1,57 @@
 import React, { Component } from 'react';
-import { Card, Icon, Button } from 'semantic-ui-react';
+import { Card, Icon, Button, Image } from 'semantic-ui-react';
+import TimeAgo from 'javascript-time-ago';
+import en from 'javascript-time-ago/locale/en';
+
+import red from '../red.png';
+import other from '../other.png';
 
 export default class AssistanceRequestCard extends Component {
     render() {
         const { assistanceRequest } = this.props;
+        const { id, payload, status, dateReceieved } = assistanceRequest;
 
-        console.log(assistanceRequest);
+        const handleAssisting = () => {};
+        const handleDetails = () => {};
 
-        const { id, payload } = assistanceRequest;
-
+        TimeAgo.addLocale(en);
+        const timeAgo = new TimeAgo('en-US');
+        const timeAgoString = timeAgo.format(new Date(dateReceieved));
         const summary = `Assistance request #${id}`;
+        console.log(timeAgoString);
+
+        const description = (
+            <div>
+                <div style={{ margin: 10 }}>
+                    <span className="date">
+                        <b>Received</b> {timeAgoString}
+                    </span>
+                    <p>{payload.description}</p>
+                    <br />
+                </div>
+                <Button icon="wifi" content={status} fluid></Button>
+            </div>
+        );
+
+        const extra = (
+            <div className="ui two buttons">
+                <Button basic color="grey" onClick={handleAssisting}>
+                    <Icon name="user"></Icon> Assist
+                </Button>
+                <Button basic color="grey" onClick={handleDetails}>
+                    <Icon name="list"></Icon> Details
+                </Button>
+            </div>
+        );
+
         return (
-            <Card color={payload && payload.aidType == 'HEALTH' ? 'red' : 'grey'}>
-                <Card.Content>
-                    <Card.Header>{summary}</Card.Header>
-                    <p>{JSON.stringify(payload)}</p>
-                    <span className="date">5 minutes ago</span>
-                </Card.Content>
-                <Card.Content extra>
-                    <div className="ui two buttons">
-                        <Button basic color="grey">
-                            <Icon name="user"></Icon> Assist
-                        </Button>
-                        <Button basic color="grey">
-                            <Icon name="list"></Icon> Details
-                        </Button>
-                    </div>
-                </Card.Content>
-            </Card>
+            <Card
+                header={summary}
+                image={payload && payload.aidType == 'HEALTH' ? red : other}
+                description={description}
+                color={payload && payload.aidType == 'HEALTH' ? 'red' : 'grey'}
+                extra={extra}
+            ></Card>
         );
     }
 }

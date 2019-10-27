@@ -7,7 +7,7 @@ exports.seed = knex => {
                     payload: JSON.stringify({
                         summary: 'Minor issue #1',
                         description: 'Minor issue #1 detailed description',
-                        category: 'other',
+                        aidType: 'NAVIGATION',
                         location: {
                             latitude: 123,
                             longitude: 23,
@@ -18,7 +18,7 @@ exports.seed = knex => {
                     payload: JSON.stringify({
                         summary: 'Minor issue #2',
                         description: 'Minor issue #2 detailed description',
-                        category: 'other',
+                        aidType: 'NAVIGATION',
                         location: {
                             latitude: 123,
                             longitude: 23,
@@ -27,9 +27,10 @@ exports.seed = knex => {
                 },
                 {
                     payload: JSON.stringify({
-                        summary: 'Minor issue #3',
+                        summary: 'Health issue #3',
                         description: 'Minor issue #3 detailed description',
-                        category: 'other',
+                        aidType: 'HEALTH',
+
                         location: {
                             latitude: 123,
                             longitude: 23,
@@ -38,9 +39,10 @@ exports.seed = knex => {
                 },
                 {
                     payload: JSON.stringify({
-                        summary: 'Minor issue #4',
+                        summary: 'Health issue #4',
                         description: 'Minor issue #4 detailed description',
-                        category: 'other',
+                        aidType: 'HEALTH',
+
                         location: {
                             latitude: 123,
                             longitude: 23,
