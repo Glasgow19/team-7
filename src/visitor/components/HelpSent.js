@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Header, Container, Image, Segment, Button } from 'semantic-ui-react';
 import '../../stylesheet.css';
-import logo from '/../gsc_logo.svg';
+import logo from '../gsc_logo.svg';
 
 import { createAssistanceRequest } from '../ApiService';
 
@@ -19,16 +19,19 @@ class HelpSent extends Component {
         const { assistanceRequestDetails } = this.props;
 
         if (assistanceRequestDetails) {
-            createAssistanceRequest({ payload: assistanceRequestDetails }).then(
-                createdAssistanceRequest => {
+            navigator.geolocation.getCurrentPosition(location => {
+                const { latitude, longitude } = location.coords;
+                createAssistanceRequest({
+                    payload: { assistanceRequestDetails, location: { latitude, longitude } },
+                }).then(createdAssistanceRequest => {
                     console.log(createdAssistanceRequest);
 
                     alert('done boi');
                     if (window.socket) {
                         window.socket.emit('newAssistanceRequest', createdAssistanceRequest);
                     }
-                },
-            );
+                });
+            });
         }
     }
     render() {
