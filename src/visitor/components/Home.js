@@ -23,7 +23,6 @@ class Home extends Component {
     }
 
     render() {
-        createFeedback({ score: 10, text: 'donnnneee' });
         return (
             <Container>
                 <Segment textAlign="center">

@@ -19,7 +19,7 @@ class Feedback2 extends Component {
 
     render() {
         const handleChange = (event, args) => {
-            this.setState({ value: args.value });
+            this.props.addFeedbackDetails(args.value);
         };
 
         const sendFeedback = () => {
@@ -47,9 +47,8 @@ class Feedback2 extends Component {
                     <h1>Anything else you want to add?</h1>
                     <Form
                         onSubmit={event => {
-                            this.props.addFeedbackDetails(this.state.value);
                             console.log(this.props.feedback);
-                            //sendFeedback();
+                            sendFeedback();
                             this.nextPath('/home');
                         }}
                     >
