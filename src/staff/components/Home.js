@@ -5,22 +5,40 @@ import UserActions from '../actions/user';
 import { loggedIn, getLoggedInUser, getToken } from '../AuthService';
 import pollos from '../pollos.jpg';
 import AssistanceCardsGrid from './AssistanceCardsGrid';
-
+import { getFeedbacks } from '../ApiService';
+import MiniFeedback from './MiniFeedback';
 class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
             user: props.user,
+            loadedFeedbacks: false,
         };
     }
 
+    componentDidMount() {
+        getFeedbacks().then(feedbacks => {
+            this.setState({ feedbacks, loadedFeedbacks: true });
+        });
+    }
+
     render() {
-        const { user } = this.state;
-        const { updateUser } = this.props;
-        const header = loggedIn() ? (
-            <Header>Home : {getLoggedInUser().email} </Header>
+        const { loadedFeedbacks, feedbacks } = this.state;
+        const renderedFeedbacks = loadedFeedbacks ? (
+            this.state && this.state.feedbacks ? (
+                feedbacks.map((feedback, i) => (
+                    <MiniFeedback
+                        key={i}
+                        score={feedback.score}
+                        text={feedback.text}
+                        dateReceieved={feedback.dateReceieved}
+                    />
+                ))
+            ) : (
+                <div>No feedback entries :(</div>
+            )
         ) : (
-            <Header>Home</Header>
+            <div>No feedback entries :(</div>
         );
 
         return (
@@ -36,49 +54,7 @@ class Home extends Component {
                                 <Header as="h3" dividing>
                                     Feedback
                                 </Header>
-
-                                <Comment>
-                                    <Comment.Content>
-                                        <Comment.Author as="a">Matt</Comment.Author>
-                                        <Comment.Metadata>
-                                            <div>Today at 5:42PM</div>
-                                        </Comment.Metadata>
-                                        <Comment.Text>How artistic!</Comment.Text>
-                                        <Comment.Actions>
-                                            <Comment.Action>Which card?</Comment.Action>
-                                        </Comment.Actions>
-                                    </Comment.Content>
-                                    <Comment.Content>
-                                        <Comment.Author as="a">Matt</Comment.Author>
-                                        <Comment.Metadata>
-                                            <div>Today at 5:42PM</div>
-                                        </Comment.Metadata>
-                                        <Comment.Text>How artistic!</Comment.Text>
-                                        <Comment.Actions>
-                                            <Comment.Action>Which card?</Comment.Action>
-                                        </Comment.Actions>
-                                    </Comment.Content>
-                                    <Comment.Content>
-                                        <Comment.Author as="a">Matt</Comment.Author>
-                                        <Comment.Metadata>
-                                            <div>Today at 5:42PM</div>
-                                        </Comment.Metadata>
-                                        <Comment.Text>How artistic!</Comment.Text>
-                                        <Comment.Actions>
-                                            <Comment.Action>Which card?</Comment.Action>
-                                        </Comment.Actions>
-                                    </Comment.Content>
-                                    <Comment.Content>
-                                        <Comment.Author as="a">Matt</Comment.Author>
-                                        <Comment.Metadata>
-                                            <div>Today at 5:42PM</div>
-                                        </Comment.Metadata>
-                                        <Comment.Text>How artistic!</Comment.Text>
-                                        <Comment.Actions>
-                                            <Comment.Action>Which card?</Comment.Action>
-                                        </Comment.Actions>
-                                    </Comment.Content>
-                                </Comment>
+                                {renderedFeedbacks}
                             </Comment.Group>
                         </Grid.Column>
                     </Grid.Row>

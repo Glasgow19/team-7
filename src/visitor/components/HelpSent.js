@@ -20,18 +20,14 @@ class HelpSent extends Component {
         const { assistanceRequestDetails } = this.props;
 
         if (assistanceRequestDetails) {
-            navigator.geolocation.getCurrentPosition(location => {
-                const { latitude, longitude } = location.coords;
-                createAssistanceRequest({
-                    payload: { assistanceRequestDetails, location: { latitude, longitude } },
-                }).then(createdAssistanceRequest => {
-                    console.log(createdAssistanceRequest);
-
-                    alert('done boi');
-                    if (window.socket) {
-                        window.socket.emit('newAssistanceRequest', createdAssistanceRequest);
-                    }
-                });
+            createAssistanceRequest({
+                payload: { assistanceRequestDetails },
+            }).then(createdAssistanceRequest => {
+                console.log(createdAssistanceRequest);
+                alert('done boi');
+                if (window.socket) {
+                    window.socket.emit('newAssistanceRequest', createdAssistanceRequest);
+                }
             });
         }
     }
