@@ -25,7 +25,7 @@ class Home extends Component {
 
         return (
             <Container>
-                <h1>Staff</h1>
+                <h1>Assistance Requests</h1>
                 <Grid divided="vertically">
                     <Grid.Row columns={2}>
                         <Grid.Column width="13">

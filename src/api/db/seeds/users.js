@@ -8,10 +8,12 @@ exports.seed = knex => {
             const dummyUsers = [
                 {
                     email: 'gabrijel@lospolloshermanos.com',
+                    fullName: 'Gabrijel Boduljak',
                     password: bcrypt.hashSync('lospollos123', jwtSettings.saltRounds),
                 },
                 {
                     email: 'manuel@lospolloshermanos.com',
+                    fullName: 'Manuel Brea',
                     password: bcrypt.hashSync('lospollos123', jwtSettings.saltRounds),
                 },
                 {

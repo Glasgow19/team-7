@@ -3,17 +3,19 @@ import { NavLink } from 'react-router-dom';
 import { Container, Menu, Icon, Button, Segment } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { logout as cleanLocalStorage } from '../../AuthService';
+import { logout as cleanLocalStorage, getLoggedInUser } from '../../AuthService';
 import UserActions from '../../actions/user';
 
 class Navigation extends Component {
     render() {
-        const { user, logout } = this.props;
+        const { logout } = this.props;
+
+        const user = getLoggedInUser();
 
         const UserInfo = user
             ? () => (
                   <Menu.Item as="a">
-                      Hi, &nbsp; <strong>{user.email}!</strong>
+                      Hi, &nbsp; <strong>{user.fullName}!</strong>
                   </Menu.Item>
               )
             : () => null;
@@ -43,7 +45,7 @@ class Navigation extends Component {
                 <Menu inverted pointing secondary>
                     <Container>
                         <Menu.Item as={NavLink} exact to="/" header>
-                            Staff
+                            Assistance Requests
                         </Menu.Item>
                         <Menu.Item as={NavLink} exact to="/page3">
                             Feedback

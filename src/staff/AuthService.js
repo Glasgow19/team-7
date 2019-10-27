@@ -47,7 +47,10 @@ export const register = async (email, password) => {
 
 export const loggedIn = () => !!getToken();
 
-export const getLoggedInUser = () => decode(getToken());
+export const getLoggedInUser = () => {
+    if (getToken()) return decode(getToken());
+    return null;
+};
 
 export const fetchWithAuth = (url, method, body) => {
     const headers = {

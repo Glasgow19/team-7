@@ -52,7 +52,11 @@ router.post(`${baseUrl}/login`, async ctx => {
         return;
     }
 
-    const token = jwt.sign({ email }, jwtSettings.keys.private, jwtSettings.options);
+    const token = jwt.sign(
+        { fullName: existingUser.fullName, profilePhoto: existingUser.profilePhoto, email },
+        jwtSettings.keys.private,
+        jwtSettings.options,
+    );
 
     ok(ctx, { token });
 });
