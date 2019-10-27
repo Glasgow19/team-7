@@ -66,7 +66,7 @@ class Feedback2 extends Component {
 
 const mapStateToProps = state => {
     const { feedbackScore, feedbackDetails } = state.form;
-    return { feedback: { feedbackScore, feedbackDetails } };
+    return { feedback: { score: feedbackScore, text: feedbackDetails } };
 };
 const mapDispatchToProps = dispatch => ({
     addFeedbackDetails: feedbackDetails =>
