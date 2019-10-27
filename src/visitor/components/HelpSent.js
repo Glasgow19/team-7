@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Header, Container, Image, Segment, Button } from 'semantic-ui-react';
+import { Header, Container, Image, Segment, Button, Message } from 'semantic-ui-react';
 import FormActions from '../actions/form';
 import '../../stylesheet.css';
 import logo from '../gsc_logo.svg';
 import Speech from 'react-speech';
 import { createAssistanceRequest } from '../ApiService';
+import { store } from 'react-notifications-component';
 
 class HelpSent extends Component {
     constructor(props) {
@@ -23,8 +24,7 @@ class HelpSent extends Component {
             createAssistanceRequest({
                 payload: { assistanceRequestDetails },
             }).then(createdAssistanceRequest => {
-                console.log(createdAssistanceRequest);
-                alert('done boi');
+                alert('Someone will be with you soon.');
                 if (window.socket) {
                     window.socket.emit('newAssistanceRequest', createdAssistanceRequest);
                 }
@@ -37,19 +37,33 @@ class HelpSent extends Component {
     }
 
     render() {
+        const textContainer = (
+            <div>
+                <h1>Thank You</h1>
+                <p size="big">
+                    <strong>A staff member</strong> will be with you soon.
+                </p>
+            </div>
+        );
+        const descriptionContainer = (
+            <div>
+                <Speech text="Thank you. A staff member will be with you soon. Please stay in your current location." />
+                {textContainer}
+            </div>
+        );
+
         return (
             <Container>
                 <Segment textAlign="center">
                     <div className="topbar">
                         <img className="logo" src={logo} />
                     </div>
-                    <p className="Title">Glasgow Science Center Help Portal</p>
-                    <Speech text="Thank you. A staff member will be with you soon. Please stay in your current location." />
-                    <h2> Thank You </h2>
-                    <p size="big">A staff member will be with you soon</p>
+
+                    <Message content={descriptionContainer} />
                 </Segment>
                 <Segment textAlign="center">
                     <Button
+                        icon="home"
                         fluid
                         size="huge"
                         onClick={() => {

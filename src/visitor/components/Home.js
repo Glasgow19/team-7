@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Header, Container, Image, Segment, Button } from 'semantic-ui-react';
+import { Header, Container, Image, Icon, Segment, Button, Message } from 'semantic-ui-react';
 import FormActions from '../actions/form';
 import '../../stylesheet.css';
 import logo from '/../gsc_logo.svg';
@@ -24,19 +24,40 @@ class Home extends Component {
     }
 
     render() {
+        const buttonExplanation = (<div>
+            <div style={{margin:10}}></div>
+            Use <Speech text=""/> to trigger text to speech synthesis.
+            <br/>
+            You do not fill all information to request staff assistance.
+            </div>
+        );
+
         return (
             <Container>
                 <Segment textAlign="center">
                     <div className="topbar">
                         <img className="logo" src={logo} />
                     </div>
-                    <p className="Title">Glasgow Science Center Help Portal</p>
-                    <Speech className="speechbutton" text="Glasgow Science Centre help portal. Want navigation aid or to request exhibit guide. Want health assistance" />
+                    <p className="Title">
+                        <strong>Visitor/Carer</strong> Help App
+                    </p>
+                    <br />
+
+                    <Message
+                        icon='lightbulb'
+                        header='A few of quick usage tips'
+                        content={buttonExplanation}
+                    />
+
+                    <br />
+                    <br />
+                    <Message content={<Speech text="Glasgow Science Centre help portal. Want navigation aid or to request exhibit guide. Want health assistance" />} />
+
                     <Button
                         size="huge"
                         icon="list"
                         fluid
-                        content="Want navigation aid or to request a exhibit guide?"
+                        content="Struggling with navigation/information?"
                         onClick={() => {
                             this.nextPath('/navhelp1');
                             this.props.setAidType(NAVIGATION_AID);

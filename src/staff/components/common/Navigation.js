@@ -44,7 +44,10 @@ class Navigation extends Component {
             <Segment inverted>
                 <Menu inverted pointing secondary>
                     <Container>
-                        <Menu.Item as={NavLink} exact to="/" header>
+                        <Menu.Item as={NavLink} exact to="/">
+                            Glasgow Science Centre Staff App 
+                        </Menu.Item>
+                        <Menu.Item as={NavLink} exact to="/">
                             Assistance Requests
                         </Menu.Item>
                         <Menu.Item as={NavLink} exact to="/page3">

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Header, Container, Image, Segment, Button } from 'semantic-ui-react';
+import { Header, Container, Image, Segment, Button, Message } from 'semantic-ui-react';
 
 import FormActions from '../actions/form';
 import { loggedIn, getLoggedInUser, getToken } from '../AuthService';
@@ -29,16 +29,23 @@ class NavigationHelp1 extends Component {
     render() {
         const { user } = this.state;
         const { updateUser } = this.props;
+        const explanation = (<h1>I want to</h1>);
+        const speechContainer = (
+            <div>
+                <div style={{margin:10}}></div>
+                <Speech text="What do you need? Request further explanation. Find particular exibit. or Other." />
+                {explanation}
 
+            </div>
+        );
         return (
             <Container>
                 <Segment textAlign="center">
                     <div className="topbar">
                         <img className="logo" src={logo} />
                     </div>
-                    <p className="Title">Glasgow Science Center Help Portal</p>
-                    <Speech text="What do you need. Request further explanation. Find particular exibit. Other." />
-                    <h1>What do you need?</h1>
+                    
+                    <Message content={speechContainer} />
                     <Button
                         fluid
                         size="huge"

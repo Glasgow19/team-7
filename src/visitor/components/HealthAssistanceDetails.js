@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Container, Segment, Button } from 'semantic-ui-react';
+import { Container, Segment, Button, Message } from 'semantic-ui-react';
 import '../../stylesheet.css';
 import logo from '/../gsc_logo.svg';
 import Speech from 'react-speech';
@@ -40,34 +40,39 @@ class HealthAssistanceDetails extends Component {
                     <div class="topbar">
                         <img class="logo" src={logo} />
                     </div>
-                    <p class="Title">Glasgow Science Center Help Portal</p>
-                    <Speech text="Are you hurt? Are you lost? Do you feel overwhelmed? Yes. or No." />
-                    <h1>Are you hurt?</h1>
-                    <Button.Group size="large">
-                        <Button
-                            active={buttonStates.first.yes}
-                            color={buttonStates.first.yes ? 'red' : 'grey'}
-                            onClick={() => {
-                                this.setState({
-                                    buttonStates: { ...buttonStates, first: { yes: true } },
-                                });
-                            }}
-                        >
-                            Yes
-                        </Button>
-                        <Button.Or />
-                        <Button
-                            active={!buttonStates.first.yes}
-                            color={!buttonStates.first.yes ? 'green' : 'grey'}
-                            onClick={() => {
-                                this.setState({
-                                    buttonStates: { ...buttonStates, first: { yes: false } },
-                                });
-                            }}
-                        >
-                            No
-                        </Button>
-                    </Button.Group>
+
+                    <Message content={<Speech text="Are you hurt? Are you lost? Do you feel overwhelmed? Yes. or No." />} />
+
+                    <Message>
+                        <h1>Are you hurt?</h1>
+                        <Button.Group size="large">
+                            <Button
+                                active={buttonStates.first.yes}
+                                color={buttonStates.first.yes ? 'red' : 'grey'}
+                                onClick={() => {
+                                    this.setState({
+                                        buttonStates: { ...buttonStates, first: { yes: true } },
+                                    });
+                                }}
+                            >
+                                Yes
+                            </Button>
+                            <Button.Or />
+                            <Button
+                                active={!buttonStates.first.yes}
+                                color={!buttonStates.first.yes ? 'green' : 'grey'}
+                                onClick={() => {
+                                    this.setState({
+                                        buttonStates: { ...buttonStates, first: { yes: false } },
+                                    });
+                                }}
+                            >
+                                No
+                            </Button>
+                        </Button.Group>
+                    </Message>
+
+                    <Message>
                     <h1>Are you lost?</h1>
                     <Button.Group size="large">
                         <Button
@@ -94,37 +99,41 @@ class HealthAssistanceDetails extends Component {
                             No
                         </Button>
                     </Button.Group>{' '}
+                    </Message>
+                    <Message>
                     <h1>Do you feel overwhelmed?</h1>
-                    <Button.Group size="large">
-                        <Button
-                            active={buttonStates.third.yes}
-                            color={buttonStates.third.yes ? 'red' : 'grey'}
-                            onClick={() => {
-                                this.setState({
-                                    buttonStates: { ...buttonStates, third: { yes: true } },
-                                });
-                            }}
-                        >
-                            Yes
-                        </Button>
-                        <Button.Or />
-                        <Button
-                            active={!buttonStates.third.yes}
-                            color={!buttonStates.third.yes ? 'green' : 'grey'}
-                            onClick={() => {
-                                this.setState({
-                                    buttonStates: { ...buttonStates, third: { yes: false } },
-                                });
-                            }}
-                        >
-                            No
-                        </Button>
-                    </Button.Group>
+                        <Button.Group size="large">
+                            <Button
+                                active={buttonStates.third.yes}
+                                color={buttonStates.third.yes ? 'red' : 'grey'}
+                                onClick={() => {
+                                    this.setState({
+                                        buttonStates: { ...buttonStates, third: { yes: true } },
+                                    });
+                                }}
+                            >
+                                Yes
+                            </Button>
+                            <Button.Or />
+                            <Button
+                                active={!buttonStates.third.yes}
+                                color={!buttonStates.third.yes ? 'green' : 'grey'}
+                                onClick={() => {
+                                    this.setState({
+                                        buttonStates: { ...buttonStates, third: { yes: false } },
+                                    });
+                                }}
+                            >
+                                No
+                            </Button>
+                        </Button.Group>
+                    </Message>
                 </Segment>
                 <Segment textAlign="center">
                     <Button
                         icon="arrow right"
                         size="massive"
+                        color="positive"
                         fluid
                         onClick={() => {
                             const healthDetails = {

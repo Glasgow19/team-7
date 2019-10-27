@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SpeechRecognition from 'react-speech-recognition';
+import { Button } from 'semantic-ui-react';
 
 const SpeechRecognizer = ({
     transcript,
@@ -8,23 +9,20 @@ const SpeechRecognizer = ({
     listening,
     interimTranscript,
 }) => {
-    console.log(transcript);
-    console.log(interimTranscript);
-
     if (listening)
         return (
             <div>
-                <button onClick={stopListening}>Stop</button>
-                <span>{transcript}</span>
+                <p className=".transcript">{transcript}</p>
+                <Button size="massive" circular icon="microphone slash" onClick={stopListening} />
             </div>
         );
     else
         return (
             <div>
-                <button onClick={startListening}>Start</button>
-                <span>{transcript}</span>
+                <p className=".transcript">{transcript}</p>
+                <Button size="massive" circular icon="microphone" onClick={startListening} />
             </div>
         );
 };
 
-export default SpeechRecognition({ continous: true })(SpeechRecognizer);
+export default SpeechRecognition({ continous: true, autoStart: false })(SpeechRecognizer);

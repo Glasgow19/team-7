@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Header, Container, Image, Segment, Button, Form, Input } from 'semantic-ui-react';
+import {
+    Header,
+    Container,
+    Image,
+    Segment,
+    Button,
+    Form,
+    TextArea,
+    Input,
+    Message,
+} from 'semantic-ui-react';
 
 import FormActions from '../actions/form';
 import { loggedIn, getLoggedInUser, getToken } from '../AuthService';
@@ -9,6 +19,8 @@ import pollos from '../pollos.jpg';
 import '../../stylesheet.css';
 import logo from '/../gsc_logo.svg';
 import Speech from 'react-speech';
+import SpeechRecognizer from './SpeechRecognizer';
+import { store } from 'react-notifications-component';
 
 const EXPLANATION = 'EXPLANATION';
 const FIND_EXHIBIT = 'FIND_EXHIBIT';
@@ -33,24 +45,51 @@ class Details extends Component {
             this.setState({ value: args.value });
         };
 
+        const messageContainer = (
+            <div>
+                <Speech text="Can you explain what you need? Enter text. Submit." />
+                <h1>Can you explain what you need?</h1>
+            </div>
+        );
+
         return (
             <Container>
                 <Segment textAlign="center">
-                    <div class="topbar">
-                        <img class="logo" src={logo} />
+                    <div className="topbar">
+                        <img className="logo" src={logo} />
                     </div>
 
-                    <p class="Title">Glasgow Science Center Help Portal</p>
+                    <Message content={messageContainer} />
 
-                    <Speech text="Can you explain what you need? Enter text. Submit." />
-                    <h1>Can you explain what you need?</h1>
+                    <Message>
+                        <div>
+                            <SpeechRecognizer></SpeechRecognizer>
+                        </div>
+                    </Message>
                     <Form
                         onSubmit={event => {
-                            this.props.addExtraDetails(this.state.value);
+                            let recognised = '';
+                            if (document.getElementsByClassName('.transcript')) {
+                                recognised += document.getElementsByClassName('.transcript')[0]
+                                    .innerHTML;
+                            }
+                            let details = '';
+                            if (this.state.value) details += this.state.value;
+                            if (recognised) details += recognised;
+
+                            this.props.addExtraDetails(details);
                             this.nextPath('/helpsent');
                         }}
                     >
-                        <Input fluid type="text" name="detailInput" onChange={handleChange} />
+                        <TextArea
+                            placeholder="Tell us more"
+                            type="text"
+                            name="detailInput"
+                            onChange={handleChange}
+                        />
+                        <br />
+                        <br />
+
                         <Button fluid type="submit" size="huge">
                             Submit
                         </Button>

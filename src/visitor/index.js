@@ -21,6 +21,8 @@ import Register from './components/Register';
 import RunOnLoad from './components/common/RunOnLoad';
 import configureStore from './store';
 import HealthAssistanceDetails from './components/HealthAssistanceDetails';
+import ReactNotification from 'react-notifications-component';
+import 'react-notifications-component/dist/theme.css';
 
 const App = props => {
     const { isAuthenticated } = props;
@@ -30,6 +32,7 @@ const App = props => {
                 <RunOnLoad />
                 <Realtime />
                 <Container>
+                    <ReactNotification />
                     <Switch>
                         <Route exact path="/" component={Home} />
                         <ProtectedRoute
