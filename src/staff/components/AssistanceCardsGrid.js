@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { Card, Dropdown, Form } from 'semantic-ui-react';
 import AssistanceRequestCard from './AssistanceRequestCard';
 import { getAssistanceRequests } from '../ApiService';
-
 import ReactNotification from 'react-notifications-component';
 import { store } from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
+import MiniFeedback from './MiniFeedback';
 
 const assistanceOptions = [
     { key: 'all', text: 'All', value: 'ALL' },
