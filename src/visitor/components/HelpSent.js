@@ -19,7 +19,8 @@ class HelpSent extends Component {
         if (assistanceRequestDetails) {
             createAssistanceRequest({ payload: assistanceRequestDetails }).then(
                 createdAssistanceRequest => {
-                    console.log(createAssistanceRequest);
+                    console.log(createdAssistanceRequest);
+
                     alert('done boi');
                     if (window.socket) {
                         window.socket.emit('newAssistanceRequest', createdAssistanceRequest);
