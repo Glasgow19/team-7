@@ -25,18 +25,25 @@ router.post(baseUrl, async ctx => {
 });
 
 router.post(baseUrl + '/assist', async ctx => {
+    const query = ctx.app.queries.assistanceRequest;
     const { submittedByConnectionId, staffMember, assistanceRequest } = ctx.request.body;
     console.log(submittedByConnectionId);
     console.log(staffMember);
 
     if (staffMember) {
         const { profilePhoto, fullName } = staffMember;
-        global.socketIo
-            .to(submittedByConnectionId)
-            .emit('visitor:helpIsComing', {
-                assistanceRequest,
-                staffMember: { profilePhoto, fullName },
-            });
+
+        await query
+            .set()
+            .where({ id: assistanceRequest.id })
+            .update({ status: `Allocated to ${fullName}.` });
+
+        global.socketIo.to(submittedByConnectionId).emit('visitor:helpIsComing', {
+            assistanceRequest,
+            staffMember: { profilePhoto, fullName },
+        });
+
+        global.socketIo.emit('staff:updateAssistanceStatus');
     }
 
     ok(ctx, { assistanceRequest: ctx.request.body });

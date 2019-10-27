@@ -19,7 +19,10 @@ export default class AssistanceCardsGrid extends Component {
 
     componentDidMount() {
         window.socket.on('staff:newAssistanceRequest', payload => {
-            this.setState({ easyGridReload });
+            easyGridReload();
+        });
+
+        window.socket.on('staff:updateAssistanceStatus', () => {
             easyGridReload();
         });
 

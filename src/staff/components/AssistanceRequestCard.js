@@ -11,6 +11,7 @@ export default class AssistanceRequestCard extends Component {
     render() {
         const { assistanceRequest } = this.props;
         const { id, payload, status, dateReceieved } = assistanceRequest;
+        console.log();
 
         const handleAssisting = () => {
             assist({
@@ -29,6 +30,13 @@ export default class AssistanceRequestCard extends Component {
         const timeAgoString = timeAgo.format(new Date(dateReceieved));
         const summary = `Assistance request #${id}`;
 
+        const extraText =
+            payload &&
+            payload.assistanceRequestDetails &&
+            payload.assistanceRequestDetails.extraDetails
+                ? payload.assistanceRequestDetails.extraDetails
+                : '';
+
         const description = (
             <div>
                 <div style={{ margin: 10 }}>
@@ -36,6 +44,9 @@ export default class AssistanceRequestCard extends Component {
                         <b>Received</b> {timeAgoString}
                     </span>
                     <p>{payload.description}</p>
+                    <p>
+                        <strong>{extraText}</strong>
+                    </p>
                     <br />
                 </div>
                 <Button icon="wifi" content={status} fluid></Button>
