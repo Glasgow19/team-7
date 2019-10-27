@@ -11,7 +11,6 @@ export default class AssistanceRequestCard extends Component {
     render() {
         const { assistanceRequest } = this.props;
         const { id, payload, status, dateReceieved } = assistanceRequest;
-        console.log();
 
         const handleAssisting = () => {
             assist({
@@ -58,9 +57,9 @@ export default class AssistanceRequestCard extends Component {
                 <Button basic color="grey" onClick={handleAssisting}>
                     <Icon name="user"></Icon> Assist
                 </Button>
-                <Button basic color="grey" onClick={handleDetails}>
+                {/* <Button basic color="grey" onClick={handleDetails}>
                     <Icon name="list"></Icon> Details
-                </Button>
+                </Button> */}
             </div>
         );
 
