@@ -27,15 +27,15 @@ class Home extends Component {
         return (
             <Container>
                 <Segment textAlign="center">
-                <div class = 'topbar'>
-                <img class = 'logo' src={logo}/>
-            </div>
-            <p class = 'Title'>Glasgow Science Center Help Portal</p>
+                    <div className="topbar">
+                        <img className="logo" src={logo} />
+                    </div>
+                    <p className="Title">Glasgow Science Center Help Portal</p>
                     <Button
-                        class = "buttonbig"
+                        size="massive"
                         icon="list"
                         fluid
-                        content="Do you want a navigation aid or to request a exhibit guide?"
+                        content="Want navigation aid or to request a exhibit guide?"
                         onClick={() => {
                             this.nextPath('/navhelp1');
                             this.props.setAidType(NAVIGATION_AID);
@@ -43,10 +43,10 @@ class Home extends Component {
                     />
                     <Button
                         fluid
-                        class = "buttonbig"
+                        size="massive"
                         icon="heart"
                         color="red"
-                        content="Do you want health assistance?"
+                        content="Want health assistance?"
                         onClick={() => {
                             this.nextPath('/health-assistance-details');
                             this.props.setAidType(HEART);

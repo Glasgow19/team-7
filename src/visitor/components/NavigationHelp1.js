@@ -32,14 +32,15 @@ class NavigationHelp1 extends Component {
         return (
             <Container>
                 <Segment textAlign="center">
-                    
-                <div class = 'topbar'>
-                    <img class = 'logo' src={logo}/>
-                </div>
-                <p class = 'Title'>Glasgow Science Center Help Portal</p>
+                    <div class="topbar">
+                        <img class="logo" src={logo} />
+                    </div>
+                    <p class="Title">Glasgow Science Center Help Portal</p>
                     <h1>What do you need?</h1>
                     <Button
                         fluid
+                        size="massive"
+                        icon="lightbulb"
                         content="Request Further Explanation"
                         onClick={() => {
                             this.props.setCallReason(EXPLANATION);
@@ -48,6 +49,8 @@ class NavigationHelp1 extends Component {
                     />
                     <Button
                         fluid
+                        size="massive"
+                        icon="map"
                         content="Find Particular Exhibit"
                         onClick={() => {
                             this.props.setCallReason(FIND_EXHIBIT);
@@ -56,6 +59,8 @@ class NavigationHelp1 extends Component {
                     />
                     <Button
                         fluid
+                        size="massive"
+                        icon="list"
                         content="Other"
                         onClick={() => {
                             this.props.setCallReason(OTHER);

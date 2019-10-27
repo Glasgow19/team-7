@@ -32,15 +32,15 @@ class MoreInfo extends Component {
         return (
             <Container>
                 <Segment textAlign="center">
-                    
-                    <div class = 'topbar'>
-                        <img class = 'logo' src={logo}/>
+                    <div class="topbar">
+                        <img class="logo" src={logo} />
                     </div>
-                    <p class = 'Title'>Glasgow Science Center Help Portal</p>
+                    <p class="Title">Glasgow Science Center Help Portal</p>
                     <h1>Do you want to give more details?</h1>
                     <Button
                         fluid
                         content="Yes"
+                        size="massive"
                         onClick={() => {
                             this.nextPath('/details');
                         }}
@@ -48,6 +48,7 @@ class MoreInfo extends Component {
                     <Button
                         fluid
                         content="No"
+                        size="massive"
                         onClick={() => {
                             this.nextPath('/helpsent');
                         }}

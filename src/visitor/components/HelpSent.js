@@ -35,10 +35,10 @@ class HelpSent extends Component {
         return (
             <Container>
                 <Segment textAlign="center">
-                    <div class="topbar">
-                        <img class="logo" src={logo} />
+                    <div className="topbar">
+                        <img className="logo" src={logo} />
                     </div>
-                    <p class="Title">Glasgow Science Center Help Portal</p>
+                    <p className="Title">Glasgow Science Center Help Portal</p>
                     <h2> Thank You </h2>
                     <p>A staff member will be with you soon</p>
                     <p>Please stay in your current location</p>
