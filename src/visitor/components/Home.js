@@ -24,7 +24,6 @@ class Home extends Component {
     }
 
     render() {
-        createFeedback({ score: 10, text: 'donnnneee' });
         return (
             <Container>
                 <Segment textAlign="center">
@@ -51,7 +50,7 @@ class Home extends Component {
                         content="Want health assistance?"
                         onClick={() => {
                             this.nextPath('/health-assistance-details');
-                            this.props.setAidType(HEART);
+                            this.props.setAidType(HEALTH_AID);
                         }}
                     />
                 </Segment>

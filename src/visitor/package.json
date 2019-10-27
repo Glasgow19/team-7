@@ -9,7 +9,7 @@
     "dependencies": {
         "es6-promise": "^4.2.6",
         "jwt-decode": "^2.2.0",
-        "react": "^16.8.4",
+        "react": "^16.11.0",
         "react-dom": "^16.2.0",
         "react-notifications-component": "^2.1.0",
         "react-redux": "^6.0.1",

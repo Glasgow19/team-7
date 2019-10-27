@@ -37,11 +37,10 @@ class HealthAssistanceDetails extends Component {
         return (
             <Container>
                 <Segment textAlign="center">
-                <div class = 'topbar'>
-                    <img class = 'logo' src={logo}/>
-                </div>
-
-                <p class = 'Title'>Glasgow Science Center Help Portal</p>
+                    <div class="topbar">
+                        <img class="logo" src={logo} />
+                    </div>
+                    <p class="Title">Glasgow Science Center Help Portal</p>
                     <Speech text="Are you hurt? Are you lost? Do you feel overwhelmed? Yes. or No." />
                     <h1>Are you hurt?</h1>
                     <Button.Group size="large">

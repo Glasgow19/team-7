@@ -17,6 +17,7 @@ export const createAssistanceRequest = async ({ payload }) => {
 };
 
 export const createFeedback = async feedback => {
+    console.log(feedback);
     const result = await fetch(`${apiUrl}/api/feedbacks`, {
         method: 'POST',
         headers: {
@@ -25,6 +26,7 @@ export const createFeedback = async feedback => {
         },
         body: JSON.stringify({ feedback }),
     });
+    console.log(result);
 
     const response = await result.json();
     return response;

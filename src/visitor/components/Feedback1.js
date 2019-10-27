@@ -16,6 +16,10 @@ class Feedback1 extends Component {
         this.props.history.push(path);
     }
 
+    ComponentDidMount() {
+        this.props.addFeedbackScore(3);
+    }
+
     render() {
         const { user } = this.state;
         const { updateUser } = this.props;
@@ -32,7 +36,6 @@ class Feedback1 extends Component {
                     <p className="Title">Glasgow Science Center Help Portal</p>
                     <h1>How well did we help you?</h1>
                     <Rating
-                        fluid
                         maxRating={5}
                         onRate={handleChange}
                         defaultRating={3}
@@ -58,7 +61,7 @@ class Feedback1 extends Component {
 
 const mapStateToProps = state => ({});
 const mapDispatchToProps = dispatch => ({
-    addFeedbackScore: feedbackScore => dispatch(FormActions.setCallReason(feedbackScore)),
+    addFeedbackScore: feedbackScore => dispatch(FormActions.addFeedbackScore(feedbackScore)),
 });
 
 export default withRouter(
