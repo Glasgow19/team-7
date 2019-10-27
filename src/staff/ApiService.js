@@ -13,3 +13,16 @@ export const getAssistanceRequests = async () => {
     const response = await result.json();
     return response.assistanceRequests;
 };
+
+export const getFeedbacks = async () => {
+    const result = await fetch(`${apiUrl}/api/feedbacks`, {
+        method: 'GET',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+    });
+
+    const response = await result.json();
+    return response.feedbacks;
+};

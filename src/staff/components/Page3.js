@@ -1,91 +1,120 @@
-import React from 'react';
-import { Header, Container, Segment } from 'semantic-ui-react';
-import '/./feedback.css';
-import logo from '/./gsc_logo.svg';
-import {Pie} from 'react-chartjs-2'
-import { List, Rating } from 'semantic-ui-react'
+import { Card, List, Rating, Grid, Header, Container, Segment, Statistic } from 'semantic-ui-react';
+import { Pie } from 'react-chartjs-2';
+import TimeAgo from 'javascript-time-ago';
+import en from 'javascript-time-ago/locale/en';
 
-const data = {
-	labels: [
-		'Excelent(5 stars)',
-		'Very Good(4 stars)',
-        'Good(3 stars)',
-        'Bad(2 stars)',
-        'Very Bad(1 stars)'
-	],
-	datasets: [{
-		data: [51, 20, 10,10,9],
-		backgroundColor: [
-        '#00ff00',
-        '#afff00',
-        '#ffff00',
-        '#ffa500',
-		'#ff0000'
-		],
-		hoverBackgroundColor: [
-        '#00ff00',
-        '#afff00',
-        '#ffff00',
-        '#ffa500',
-        '#ff0000'
-		]
-	}]
-};
+import { getFeedbacks } from '../ApiService';
 
-const Page3 = () => (
-    
-    <Container>
-        <div class = 'topbar'>
-            <img class = 'logo' src={logo}/>
-        </div>
-        <p class = 'Title'>Feedback Center</p>
+import React, { Component } from 'react';
 
-        <div class = 'piestorage'>
-          <h2>Rating</h2>
-          <Pie data={data} />
-        </div>
-        <List>
-            <List.Item>
-            <Rating icon='star' defaultRating={5} maxRating={5} disabled/>
-                <List.Content>
-                    <List.Header as='a'>Rachel</List.Header>
-                    <List.Description>
-                        15:12pm 12/10/2019
-                    </List.Description>
-                    <List.Description>
-                        Loved it
-                    </List.Description>
-                </List.Content>
-            </List.Item>
-                <List.Item>
-                <Rating icon='star' defaultRating={1} maxRating={5} disabled/>
-                <List.Content>
-                    <List.Header as='a'>Archie</List.Header>
-                    <List.Description>
-                        meeeh
-                    </List.Description>
-                </List.Content>
-            </List.Item>
-            <List.Item>
-            <Rating icon='star' defaultRating={5} maxRating={5} disabled/>
-                <List.Content>
-                    <List.Header as='a'>Sam</List.Header>
-                    <List.Description>
-                        Very helpfull
-                    </List.Description>
-                </List.Content>
-            </List.Item>
-                <List.Item>
-                <Rating icon='star' defaultRating={1} maxRating={5} disabled />
-                <List.Content>
-                    <List.Header as='a'>John</List.Header>
-                    <List.Description>
-                        Great easy to use
-                    </List.Description>
-                </List.Content>
-            </List.Item>
-        </List>
-    </Container>
-);
+export default class Page3 extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { loaded: false };
+    }
 
-export default Page3;
+    componentDidMount() {
+        getFeedbacks().then(feedbacks => {
+            const allFeedbacks = feedbacks;
+            const positiveFeedbacks = feedbacks.filter(feedback => feedback.score >= 3).length;
+            const negativeFeedbacks = feedbacks.filter(feedback => feedback.score < 3).length;
+
+            const ones = feedbacks.filter(feedback => feedback.score == 1).length;
+            const twos = feedbacks.filter(feedback => feedback.score == 2).length;
+            const threes = feedbacks.filter(feedback => feedback.score == 3).length;
+            const fours = feedbacks.filter(feedback => feedback.score == 4).length;
+            const fives = feedbacks.filter(feedback => feedback.score == 5).length;
+
+            const chartData = {
+                labels: [
+                    'Excelent(5 stars)',
+                    'Very Good(4 stars)',
+                    'Good(3 stars)',
+                    'Bad(2 stars)',
+                    'Very Bad(1 stars)',
+                ],
+                datasets: [
+                    {
+                        data: [fives, fours, threes, twos, ones],
+                        backgroundColor: ['#1ba39c', '#16a085', '#2abb9b', '#4ecdc4', '#36d7b7'],
+                        hoverBackgroundColor: [
+                            '#1ba39c',
+                            '#16a085',
+                            '#2abb9b',
+                            '#4ecdc4',
+                            '#36d7b7',
+                        ],
+                    },
+                ],
+            };
+            this.setState({
+                allFeedbacks,
+                positiveFeedbacks,
+                negativeFeedbacks,
+                chartData,
+                loaded: true,
+            });
+        });
+    }
+
+    renderFeedback({ text, score, dateReceieved }) {
+        TimeAgo.addLocale(en);
+        const timeAgo = new TimeAgo('en-US');
+        const timeAgoString = timeAgo.format(new Date(dateReceieved));
+        return (
+            <Card
+                meta={`Submitted ${timeAgoString}`}
+                extra={<Rating icon="star" defaultRating={score} maxRating={5} disabled />}
+                description={text}
+            />
+        );
+    }
+
+    render() {
+        const {
+            loaded,
+            allFeedbacks,
+            positiveFeedbacks,
+            negativeFeedbacks,
+            chartData,
+        } = this.state;
+
+        if (!loaded) return <div></div>;
+
+        const renderedFeedbacks = allFeedbacks.map(feedback => this.renderFeedback(feedback));
+
+        return (
+            <Container>
+                <Segment centered>
+                    <Header>Rating Stats</Header>
+                    <Grid>
+                        <Grid.Row columns={2}>
+                            <Grid.Column fluid>
+                                <div class="piestorage">
+                                    <Pie data={chartData} />
+                                </div>
+                            </Grid.Column>
+                            <Grid.Column>
+                                <Statistic>
+                                    <Statistic.Value>{allFeedbacks.length}</Statistic.Value>
+                                    <Statistic.Label>Feedback entries</Statistic.Label>
+                                </Statistic>
+                                <Statistic>
+                                    <Statistic.Value>{positiveFeedbacks}</Statistic.Value>
+                                    <Statistic.Label>Positive Feedback entries</Statistic.Label>
+                                </Statistic>
+                                <Statistic>
+                                    <Statistic.Value>{negativeFeedbacks}</Statistic.Value>
+                                    <Statistic.Label>Negative Feedback entries</Statistic.Label>
+                                </Statistic>
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
+                </Segment>
+                <div centered>
+                    <Card.Group>{renderedFeedbacks}</Card.Group>
+                </div>
+            </Container>
+        );
+    }
+}
