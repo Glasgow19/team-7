@@ -8,6 +8,7 @@ import { loggedIn, getLoggedInUser, getToken } from '../AuthService';
 import pollos from '../pollos.jpg';
 import '../../stylesheet.css';
 import logo from '/../gsc_logo.svg';
+import Speech from 'react-speech';
 
 const EXPLANATION = 'EXPLANATION';
 const FIND_EXHIBIT = 'FIND_EXHIBIT';
@@ -41,6 +42,7 @@ class Details extends Component {
 
                     <p class="Title">Glasgow Science Center Help Portal</p>
 
+                    <Speech text="Can you explain what you need? Enter text. Submit." />
                     <h1>Can you explain what you need?</h1>
                     <Form
                         onSubmit={event => {
