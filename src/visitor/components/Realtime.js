@@ -1,39 +1,36 @@
 import React, { Component } from 'react';
 import socketIOClient from 'socket.io-client';
+import ReactNotification from 'react-notifications-component';
+import 'react-notifications-component/dist/theme.css';
+
+import { store } from 'react-notifications-component';
+import apiUrl from '../apiUrl';
 
 export default class Realtime extends Component {
     constructor() {
         super();
-        this.state = {
-            response: false,
-            endpoint: 'http://localhost:5678',
-            reconnection: true,
-            reconnectionAttempts: Infinity,
-        };
     }
 
     componentDidMount() {
-        const { endpoint } = this.state;
-        const socket = socketIOClient(endpoint);
+        const socket = socketIOClient(apiUrl, { reconnection: true });
 
         socket.on('connected', payload => {
-            console.log(payload.hello);
             this.setState({ response: payload });
         });
 
-        socket.on('helpReceived', payload => {
-            console.log(payload);
-            alert('help received');
-        });
-
         socket.on('visitor:helpIsComing', payload => {
-            alert(payload);
+            const { staffMember, assistanceRequest } = payload;
+            alert(staffMember.fullName);
         });
 
         global.socket = socket;
     }
 
     render() {
-        return <div></div>;
+        return (
+            <div>
+                <ReactNotification />
+            </div>
+        );
     }
 }

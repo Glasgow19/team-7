@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Card, Icon, Button, Image } from 'semantic-ui-react';
 import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en';
-
+import { getLoggedInUser } from '../AuthService';
 import red from '../red.png';
 import other from '../other.png';
 
@@ -13,16 +13,15 @@ export default class AssistanceRequestCard extends Component {
         const { id, payload, status, dateReceieved } = assistanceRequest;
 
         const handleAssisting = () => {
-            console.log(assistanceRequest);
-
             assist({
-                test: 'asadasd',
                 submittedByConnectionId: assistanceRequest.connectionId,
                 assistanceRequest: assistanceRequest,
+                staffMember: getLoggedInUser(),
             }).then(response => {
                 console.log(response);
             });
         };
+
         const handleDetails = () => {};
 
         TimeAgo.addLocale(en);

@@ -1,6 +1,4 @@
 const Router = require('koa-router');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
 const { head } = require('lodash');
 
 const router = new Router();
@@ -27,12 +25,19 @@ router.post(baseUrl, async ctx => {
 });
 
 router.post(baseUrl + '/assist', async ctx => {
-    const { submittedByConnectionId } = ctx.request.body;
+    const { submittedByConnectionId, staffMember, assistanceRequest } = ctx.request.body;
     console.log(submittedByConnectionId);
+    console.log(staffMember);
 
-    global.socketIo
-        .to(submittedByConnectionId)
-        .emit('visitor:helpIsComing', { message: 'comes boi' });
+    if (staffMember) {
+        const { profilePhoto, fullName } = staffMember;
+        global.socketIo
+            .to(submittedByConnectionId)
+            .emit('visitor:helpIsComing', {
+                assistanceRequest,
+                staffMember: { profilePhoto, fullName },
+            });
+    }
 
     ok(ctx, { assistanceRequest: ctx.request.body });
 });
