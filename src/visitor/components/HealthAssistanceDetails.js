@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { Container, Segment, Button } from 'semantic-ui-react';
 import '../../stylesheet.css';
 import logo from '/../gsc_logo.svg';
-
+import Speech from 'react-speech';
 import FormActions from '../actions/form';
 
 class HealthAssistanceDetails extends Component {
@@ -42,6 +42,7 @@ class HealthAssistanceDetails extends Component {
                 </div>
 
                 <p class = 'Title'>Glasgow Science Center Help Portal</p>
+                    <Speech text="Are you hurt? Are you lost? Do you feel overwhelmed? Yes. or No." />
                     <h1>Are you hurt?</h1>
                     <Button.Group size="large">
                         <Button
