@@ -25,4 +25,21 @@ export default {
             payload: { details },
         };
     },
+    addFeedbackScore: score => {
+        return {
+            type: ActionTypes.ADD_FEEDBACK_SCORE,
+            payload: { score },
+        };
+    },
+    addFeedbackDetails: feedbackDetails => {
+        return {
+            type: ActionTypes.ADD_FEEDBACK_DETAILS,
+            payload: { feedbackDetails },
+        };
+    },
+    clearFormStore: () => {
+        return {
+            type: ActionTypes.CLEAR_FORM_STORE,
+        };
+    },
 };

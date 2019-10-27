@@ -11,6 +11,8 @@ import NavigationHelp1 from './components/NavigationHelp1';
 import HelpSent from './components/HelpSent';
 import MoreInfo from './components/MoreInfo';
 import Details from './components/Details';
+import Feedback1 from './components/Feedback1';
+import Feedback2 from './components/Feedback2';
 import Page2 from './components/Page2';
 import Page3 from './components/Page3';
 import Login from './components/Login';
@@ -45,6 +47,8 @@ const App = props => {
                         <Route exact path="/helpsent" component={HelpSent} />
                         <Route exact path="/details" component={Details} />
                         <Route exact path="/moreinfo" component={MoreInfo} />
+                        <Route exact path="/feedback1" component={Feedback1} />
+                        <Route exact path="/feedback2" component={Feedback2} />
                         <Route exact path="/login" component={Login} />
                         <Route exact path="/register" component={Register} />
                         <Redirect to="/" />
