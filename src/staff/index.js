@@ -42,9 +42,11 @@ const App = props => {
         </BrowserRouter>
     );
 };
+
 const mapStateToProps = state => ({
     isAuthenticated: !!state.user.user,
 });
+
 const mapDispatchToProps = () => ({});
 
 const AppWithRedux = connect(
